@@ -1,19 +1,14 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 
-# Create your views here.
-
+# Vistas principales
 def inicio(req):
-    return render(req, 'appgero/index.html')
+    return render(req, 'appgero/base.html')
 
-def cursos(req):
-    return render(req, 'appgero/cursos.html')
+def usuario(req):
+    return render(req, 'appgero/usuario.html')
 
-def profesores(req):
-    return HttpResponse(req, 'appgero/profesores.html')
+def articulo(req):
+    return render(req, 'appgero/articulo.html')
 
-def estudiantes(req):
-    return HttpResponse(req, 'appgero/estudiantes.html')
-
-def entregables(req):
-    return HttpResponse(req, 'appgero/entregables.html')
+def herramienta(req):
+    return render(req, 'appgero/herramienta.html')
