@@ -54,7 +54,7 @@ ROOT_URLCONF = 'ProyectoGeronimo.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / './AppGero/templates'],
+        'DIRS': [BASE_DIR / "templates"],  # Aquí se define la carpeta de templates
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -66,6 +66,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'ProyectoGeronimo.wsgi.application'
 
