@@ -5,7 +5,7 @@ class Usuario(models.Model):
     nombre = models.CharField(max_length=100)
     correo = models.EmailField(unique=True)
     contraseña = models.CharField(max_length=100)
-    rol = models.CharField(max_length=50)
+    rol = models.CharField(max_length=100)
 
     def __str__(self):
         return self.nombre
@@ -15,7 +15,7 @@ class Usuario(models.Model):
 class Articulo(models.Model):
     titulo = models.CharField(max_length=200)
     contenido = models.TextField()
-    fecha_publicacion = models.DateTimeField()
+    autor = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name="articulos")
 
     def __str__(self):
         return self.titulo
