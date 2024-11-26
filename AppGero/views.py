@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def inicio(request):
-    return render(request, 'appgero/index.html')
+    return render(request, 'appgero/padre.html')
 
 def usuario(request):
     return render(request, 'appgero/usuario.html')
