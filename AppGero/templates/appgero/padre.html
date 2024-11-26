@@ -57,6 +57,10 @@
         </div>
     </header>
 
+    {% block contenidoQueCambia %}
+    <p>CONTENIDO DE PADRE</p>
+    {% endblock %}
+
     <!-- About-->
     <section class="about-section text-center" id="about">
         <div class="container px-4 px-lg-5">
@@ -216,10 +220,6 @@
             </div>
         </div>
     </section>
-
-    {% block contenidoQueCambia %}
-    <p>CONTENIDO DE PADRE</p>
-    {% endblock %}
     <!-- Footer-->
     <footer class="footer bg-black small text-center text-white-50">
         <div class="container px-4 px-lg-5">Copyright &copy; Your Website 2023</div>
