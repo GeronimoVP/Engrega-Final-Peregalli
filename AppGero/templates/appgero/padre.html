@@ -57,10 +57,6 @@
         </div>
     </header>
 
-    {% block contenidoQueCambia %}
-    <p>CONTENIDO DE PADRE</p>
-    {% endblock %}
-
     <!-- About-->
     <section class="about-section text-center" id="about">
         <div class="container px-4 px-lg-5">
@@ -78,6 +74,10 @@
             <img class="img-fluid" src="assets/img/ipad.png" alt="..." />
         </div>
     </section>
+
+    {% block contenidoQueCambia %}
+    <p>CONTENIDO DE PADRE</p>
+    {% endblock %}
     <!-- Projects-->
     <section class="projects-section bg-light" id="projects">
         <div class="container px-4 px-lg-5">
