@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     {% extends "AppGero/padre.html" %}
     {% load static %}
-{% block title %}Artículos{% endblock %}
+    {% block title %}Artículos{% endblock %}
 
-{% block content %}
-<h1>Artículos</h1>
-<p>Lista de artículos disponibles.</p>
-<ul>
-    <li>Artículo 1</li>
-    <li>Artículo 2</li>
-    <li>Artículo 3</li>
-</ul>
-{% endblock %}
+    {% block content %}
+    <h1>Artículos</h1>
+    <p>Lista de artículos disponibles.</p>
+    <ul>
+        <li>Artículo 1</li>
+        <li>Artículo 2</li>
+        <li>Artículo 3</li>
+    </ul>
+    {% endblock %}
 </body>
-</html>
 
+</html>

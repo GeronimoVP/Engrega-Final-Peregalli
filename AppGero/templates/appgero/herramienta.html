@@ -1,29 +1,28 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     {% extends "AppGero/padre.html" %}
-{% load static %}
+    {% load static %}
 
-{% block title %}Herramientas{% endblock %}
-
-{% block content %}
-<h2>Herramientas</h2>
-<ul>
-    {% for herramienta in herramientas %}
-    <li>
-        <h3>{{ herramienta.nombre }}</h3>
-        <p>{{ herramienta.descripcion }}</p>
-        <a href="{{ herramienta.url }}">Más información</a>
-    </li>
-    {% endfor %}
-</ul>
-{% endblock %}
+    {% block title %}Herramientas
+    <h2>Herramientas</h2>
+    <ul>
+        {% for herramienta in herramientas %}
+        <li>
+            <h3>{{ herramienta.nombre }}</h3>
+            <p>{{ herramienta.descripcion }}</p>
+            <a href="{{ herramienta.url }}">Más información</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endblock %}
 </body>
+
 </html>

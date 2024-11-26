@@ -2,8 +2,8 @@ from django.urls import path
 from AppGero import views
 
 urlpatterns = [
-    path('inicio/', views.inicio ),
-    path('articulo/', views.articulo),
-    path('herramienta/', views.herramienta),
-    path('usuario/', views.usuario),
+    path('AppGero/inicio/', views.inicio ),
+    path('AppGero/articulo/', views.articulo),
+    path('AppGero/herramienta/', views.herramienta),
+    path('AppGero/usuario/', views.usuario),
 ]
