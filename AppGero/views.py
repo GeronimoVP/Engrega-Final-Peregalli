@@ -16,31 +16,10 @@ def herramienta(request):
 
 
 def agregar_usuario(request):
-    if request.method == 'POST':
-        form = UsuarioForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('usuario')  # Redirige a la página de usuarios
-    else:
-        form = UsuarioForm()
-    return render(request, 'agregar_usuario.html', {'form': form})
+    return render(request, 'AppGero/agregar_usuario.html')
 
 def agregar_articulo(request):
-    if request.method == 'POST':
-        form = ArticuloForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('articulo')  # Redirige a la página de artículos
-    else:
-        form = ArticuloForm()
-    return render(request, 'agregar_articulo.html', {'form': form})
+    return render(request, 'AppGero/agregar_articulo.html')
 
 def agregar_herramienta(request):
-    if request.method == 'POST':
-        form = HerramientaForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('herramienta')  # Redirige a la página de herramientas
-    else:
-        form = HerramientaForm()
-    return render(request, 'agregar_herramienta.html', {'form': form})
+    return render(request, 'AppGero/agregar_herramienta.html')
