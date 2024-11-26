@@ -11,16 +11,15 @@
     {% extends "AppGero/padre.html" %}
     {% load static %}
 
-    {% block title %}Herramientas
+    {% block title %}Herramientas{% endblock %}
+    {% block contenidoQueCambia %}
     <h2>Herramientas</h2>
     <ul>
-        {% for herramienta in herramientas %}
         <li>
             <h3>{{ herramienta.nombre }}</h3>
             <p>{{ herramienta.descripcion }}</p>
             <a href="{{ herramienta.url }}">Más información</a>
         </li>
-        {% endfor %}
     </ul>
     {% endblock %}
 </body>
