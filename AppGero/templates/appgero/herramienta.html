@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    {% extends "AppGero/index.html" %}
-    {% load static %}
-    {% block contenidoQueCambia %}
-    entregables
-    {% endblock %}
-</body>
-</html>
+{% extends 'padre.html' %}
+
+{% block title %}Herramientas{% endblock %}
+
+{% block content %}
+<h2>Herramientas</h2>
+<ul>
+    {% for herramienta in herramientas %}
+    <li>
+        <h3>{{ herramienta.nombre }}</h3>
+        <p>{{ herramienta.descripcion }}</p>
+        <a href="{{ herramienta.url }}">Más información</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

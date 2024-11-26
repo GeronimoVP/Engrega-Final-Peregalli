@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    {% extends "AppGero/index.html" %}
-    {% load static %}
-    {% block contenidoQueCambia %}
-    entregables
-    {% endblock %}
-</body>
-</html>
+{% extends 'padre.html' %}
+
+{% block title %}Artículos{% endblock %}
+
+{% block content %}
+<h1>Artículos</h1>
+<p>Lista de artículos disponibles.</p>
+<ul>
+    <li>Artículo 1</li>
+    <li>Artículo 2</li>
+    <li>Artículo 3</li>
+</ul>
+{% endblock %}
+
