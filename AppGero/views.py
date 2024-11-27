@@ -18,10 +18,14 @@ def herramienta(request):
 
 def agregar_usuario(request):
     if request.method == "POST":  # Si se envió el formulario
-            usuario =  Usuario(nombre=request.POST['usuario'],correo=request.POST['correo'],contraseña=request.POST['contraseña'],rol=request.POST['rol'])
+        usuario = Usuario(nombre=request.POST['nombre'],
+        correo=request.POST['correo'],
+        contrasenia=request.POST['contrasenia'],
+        rol=request.POST['rol'])
 
-            usuario.save()  # Guarda el usuario en la base de datos
-            return redirect('AppGero/index.html')  # Redirige a la página de inicio o a otra vista específica
+        usuario.save()  # Guarda el usuario en la base de datos
+
+        return redirect('inicio')  # Redirige a la página de inicio o a otra vista específica
 
     return render(request, "appgero/agregar_usuario.html")
 
@@ -29,23 +33,27 @@ def agregar_usuario(request):
 
 def agregar_articulo(request):
     if request.method == "POST":  # Si se envió el formulario
-        miFormulario = ArticuloForm(request.POST)  # Instancia el formulario con los datos enviados
-        print(miFormulario)  # Para depuración (opcional)
+        print("entra1")
+        articulo = Articulo(titulo=request.POST["titulo"],
+        contenido=request.POST["contenido"],
+        autor=request.POST["autor"])
+        print ("entra2")  # Crea un objeto Articulo
 
-        if miFormulario.is_valid():  # Verifica si los datos son válidos
-            informacion = miFormulario.cleaned_data  # Obtén los datos limpios y validados
-            articulo = Articulo(
-                titulo=informacion["titulo"],
-                contenido=informacion["contenido"],
-                autor=informacion["autor"]
-            )  # Crea un objeto Articulo
-            articulo.save()  # Guarda el artículo en la base de datos
-            return redirect('inicio')  # Redirige a la página de inicio o a otra vista específica
-    else:
-        miFormulario = ArticuloForm()  # Muestra un formulario vacío inicialmente
-
-    return render(request, "appgero/agregar_articulo.html", {"form": miFormulario})
+        articulo.save()  # Guarda el artículo en la base de datos
+        
+        return redirect('inicio')  # Redirige a la página de inicio o a otra vista específica
+    
+    return render(request, "appgero/agregar_articulo.html")
 
 
 def agregar_herramienta(request):
-    return render(request, 'AppGero/agregar_herramienta.html')
+    if request.method == "POST":
+        herramienta = Herramienta(nombre=request.POST ["nombre"],
+        descripcion=request.POST["descripcion"],
+        url=request.POST["url"])
+
+        herramienta.save()
+
+        return redirect('inicio')
+
+    return render(request, 'appgero/agregar_herramienta.html')

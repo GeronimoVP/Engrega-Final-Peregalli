@@ -10,7 +10,7 @@
 
         <p> nombre: <input type = "text" name="nombre">
         <p> correo: <input type = "text" name="correo">
-        <p> contraseña: <input type = "text, number" name="contraseña">
+        <p> contraseña: <input type = "number" name="contraseña">
         <p> rol: <input type = "text," name="rol">
         
         <input type = "submit" value="Enviar">
@@ -115,7 +115,7 @@ input:focus, select:focus {
                 <input type="email" id="correo" name="correo" required>
             </div>
             <div class="form-group">
-                <label for="contrasenia">Contraseña:</label>
+                <label for="contrasenia">Contrasenia:</label>
                 <input type="password" id="contrasenia" name="contrasenia" required>
             </div>
             <div class="form-group">
@@ -129,5 +129,4 @@ input:focus, select:focus {
         </form>
     </div>
 </body>
-{% csrf_token %}
 </html>
