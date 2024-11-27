@@ -4,7 +4,7 @@ from .models import Usuario, Articulo, Herramienta
 class UsuarioForm(forms.ModelForm):
     class Meta:
         model = Usuario
-        fields = ['nombre', 'correo', 'contraseña', 'rol']  # Ajusta según los campos de tu modelo
+        fields = ['nombre', 'correo', 'contraseña', 'rol']
 
 class ArticuloForm(forms.ModelForm):
     class Meta:
