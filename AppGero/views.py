@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from AppGero.forms import UsuarioForm, ArticuloForm, HerramientaForm
 from AppGero.models import Usuario, Articulo, Herramienta
+from .forms import BuscarUsuarioFormulario
 
 def inicio(request):
     return render(request, 'appgero/index.html')
@@ -57,3 +58,15 @@ def agregar_herramienta(request):
         return redirect('inicio')
 
     return render(request, 'appgero/agregar_herramienta.html')
+
+def buscar_usuario(request):
+    resultados = None
+    if request.method == "GET" and 'criterio' in request.GET:
+        formulario = BuscarUsuarioFormulario(request.GET)
+        if formulario.is_valid():
+            termino = formulario.cleaned_data['criterio']
+            resultados = Usuario.objects.filter(nombre__icontains=termino) | Usuario.objects.filter(correo__icontains=termino)
+    else:
+        formulario = BuscarUsuarioFormulario()
+
+    return render(request, 'appgero/buscar_usuario.html', {'formulario': formulario, 'resultados': resultados})

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Usuario</title>
+</head>
+<body>
+    <h1>Buscar Usuario</h1>
+    <form method="get" action="">
+        {{ formulario.as_p }}
+        <button type="submit">Buscar</button>
+    </form>
+
+    {% if resultados %}
+        <h2>Resultados:</h2>
+        <ul>
+            {% for usuario in resultados %}
+                <li>{{ usuario.nombre }} - {{ usuario.correo }}</li>
+            {% empty %}
+                <li>No se encontraron usuarios con ese criterio.</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
