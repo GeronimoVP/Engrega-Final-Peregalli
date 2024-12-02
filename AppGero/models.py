@@ -8,7 +8,7 @@ class Usuario(models.Model):
     rol = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.nombre
+        return f"{self.nombre}, {self.correo}, {self.contrasenia}, {self.rol}"
 
 
 # Modelo para Articulo
@@ -18,7 +18,7 @@ class Articulo(models.Model):
     autor = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.titulo
+        return f"{self.titulo}, {self.contenido}, {self.autor}"
 
 
 # Modelo para Herramienta
@@ -28,4 +28,4 @@ class Herramienta(models.Model):
     url = models.URLField(null=True, blank=True)
 
     def __str__(self):
-        return self.nombre
+        return f"{self.nombre}, {self.descripcion}, {self.url}"

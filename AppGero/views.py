@@ -70,3 +70,27 @@ def buscar_usuario(request):
         formulario = BuscarUsuarioFormulario()
 
     return render(request, 'appgero/buscar_usuario.html', {'formulario': formulario, 'resultados': resultados})
+
+def leerUsuarios (request):
+
+    usuario = Usuario.objects.all()
+
+    contexto = {"usuarios":usuario}
+
+    return render (request, "appgero/leerUsuarios.html", contexto)
+
+def leerArticulos (request):
+
+    articulo = Articulo.objects.all()
+
+    contexto = {"articulo":articulo}
+
+    return render (request, "appgero/leerArticulos.html", contexto)
+
+def leerHerramientas (request):
+
+    herramienta = Herramienta.objects.all()
+
+    contexto = {"herramientas":herramienta}
+
+    return render (request, "appgero/leerHerramientas.html", contexto)
