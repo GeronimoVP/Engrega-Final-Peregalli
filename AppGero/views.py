@@ -3,6 +3,10 @@ from django.http import HttpResponse
 from AppGero.forms import UsuarioForm, ArticuloForm, HerramientaForm
 from AppGero.models import Usuario, Articulo, Herramienta
 from .forms import BuscarUsuarioFormulario
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
+from django.contrib.auth.models import User
+from django.contrib.auth.views import LoginView, LogoutView
 
 def inicio(request):
     return render(request, 'appgero/index.html')
@@ -18,27 +22,24 @@ def herramienta(request):
 
 
 def agregar_usuario(request):
-    if request.method == "POST":  # Si se envió el formulario
-        usuario = Usuario(nombre=request.POST['nombre'],
-        correo=request.POST['correo'],
-        contrasenia=request.POST['contrasenia'],
-        rol=request.POST['rol'])
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)  # Usa el formulario predeterminado de Django
+        if form.is_valid():
+            user = form.save()  # Crea un nuevo usuario
+            login(request, user)  # Inicia sesión automáticamente después del registro
+            return redirect('inicio')  # Cambia 'inicio' por la vista que quieras redirigir
+    else:
+        form = UserCreationForm()
 
-        usuario.save()  # Guarda el usuario en la base de datos
-
-        return redirect('inicio')  # Redirige a la página de inicio o a otra vista específica
-
-    return render(request, "appgero/agregar_usuario.html")
+    return render(request, "appgero/agregar_usuario.html", {'form': form})
 
 
 
 def agregar_articulo(request):
     if request.method == "POST":  # Si se envió el formulario
-        print("entra1")
         articulo = Articulo(titulo=request.POST["titulo"],
         contenido=request.POST["contenido"],
-        autor=request.POST["autor"])
-        print ("entra2")  # Crea un objeto Articulo
+        autor=request.POST["autor"])  # Crea un objeto Articulo
 
         articulo.save()  # Guarda el artículo en la base de datos
         
@@ -94,3 +95,8 @@ def leerHerramientas (request):
     contexto = {"herramientas":herramienta}
 
     return render (request, "appgero/leerHerramientas.html", contexto)
+
+
+class login(LoginView):
+    iniciar_sesion = 'appgero/login.html'  # Asegúrate de tener esta plantilla
+    redirect_authenticated_user = True  # Redirige si el usuario ya está autenticado
