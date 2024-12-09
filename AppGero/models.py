@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.auth.views import LoginView
 
 # Modelo para Usuario
 class Usuario(models.Model):
@@ -30,8 +29,3 @@ class Herramienta(models.Model):
 
     def __str__(self):
         return f"{self.nombre}, {self.descripcion}, {self.url}"
-
-
-class CustomLoginView(LoginView):
-    iniciar_sesion = 'appgero/login.html'  # Asegúrate de tener esta plantilla
-    redirect_authenticated_user = True  # Redirige si el usuario ya está autenticado
