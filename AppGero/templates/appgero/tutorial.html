@@ -5,29 +5,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Artículos</title>
+    <title>Lista de Tutoriales</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <header>
-        <h1>Lista de Artículos</h1>
+        <h1>Lista de Tutoriales</h1>
         <nav>
             <a href="{% url 'inicio' %}">Inicio</a>
-            <a href="{% url 'agregar_articulo' %}">Agregar Artículo</a>
+            <a href="{% url 'agregar_tutorial' %}">Agregar Tutorial</a>
         </nav>
     </header>
 
     <main>
-        <h2>Artículos Disponibles</h2>
+        <h2>Tutoriales Disponibles</h2>
         <ul>
-            {% for articulo in articulos %}
+            {% for tutorial in tutoriales %}
                 <li>
-                    <strong>{{ articulo.titulo }}</strong><br>
-                    <p>{{ articulo.descripcion }}</p>
-                    <a href="{% url 'detalle_articulo' articulo.id %}">Leer más</a>
+                    <strong>{{ tutorial.titulo }}</strong><br>
+                    <p>{{ tutorial.descripcion }}</p>
+                    <a href="{% url 'detalle_tutorial' tutorial.id %}">Leer más</a>
                 </li>
             {% empty %}
-                <p>No hay artículos disponibles.</p>
+                <p>No hay tutoriales disponibles.</p>
             {% endfor %}
         </ul>
     </main>
@@ -37,3 +37,4 @@
     </footer>
 </body>
 </html>
+

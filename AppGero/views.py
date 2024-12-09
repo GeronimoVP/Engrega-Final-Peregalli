@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from AppGero.forms import UsuarioForm, ArticuloForm, HerramientaForm
-from AppGero.models import Usuario, Articulo, Herramienta
+from AppGero.models import Usuario, Articulo, Herramienta, Tutorial
 from .forms import BuscarUsuarioFormulario
 
 def inicio(request):
@@ -16,6 +16,9 @@ def articulo(request):
 def herramienta(request):
     return render(request, 'appgero/herramienta.html')
 
+def tutorial(request):
+    return render (request, 'appgero/tutorial.html')
+
 
 def agregar_usuario(request):
     if request.method == "POST":  # Si se envió el formulario
@@ -29,6 +32,19 @@ def agregar_usuario(request):
         return redirect('inicio')  # Redirige a la página de inicio o a otra vista específica
 
     return render(request, "appgero/agregar_usuario.html")
+
+def agregar_tutorial(request):
+    if request.method == "POST":  # Si se envió el formulario
+        tutorial = Tutorial(titulo=request.POST["titulo"],
+        descripcion=request.POST["descripcion"],
+        contenido=request.POST["contenido"],
+        fecha_publicacion=request.POST["fecha_publicacion"])
+
+        tutorial.save()  # Guarda el artículo en la base de datos
+        
+        return redirect('inicio')  # Redirige a la página de inicio o a otra vista específica
+    
+    return render(request, "appgero/agregar_tutorial.html")
 
 
 
@@ -79,18 +95,29 @@ def leerUsuarios (request):
 
     return render (request, "appgero/leerUsuarios.html", contexto)
 
-def leerArticulos (request):
+def leerArticulos(request):
+    articulos = Articulo.objects.all()  # Recupera todos los artículos
+    contexto = {"articulos": articulos}
+    return render(request, "appgero/articulo.html", contexto)  # Usamos articulo.html
 
-    articulo = Articulo.objects.all()
+def detalleArticulo(request, id):
+    articulo = Articulo.objects.get(id=id)  # Obtiene un artículo específico por ID
+    return render(request, "appgero/leerArticulos.html", {'articulo': articulo})  # Usamos leerArticulo.html
 
-    contexto = {"articulo":articulo}
+def leerHerramientas(request):
+    herramientas = Herramienta.objects.all()  # Recupera todas las herramientas
+    contexto = {"herramientas": herramientas}
+    return render(request, "appgero/herramienta.html", contexto)  # Usamos herramienta.html
 
-    return render (request, "appgero/leerArticulos.html", contexto)
+def detalleHerramienta(request, id):
+    herramienta = Herramienta.objects.get(id=id)  # Obtiene una herramienta específica por ID
+    return render(request, "appgero/leerHerramientas.html", {'herramienta': herramienta})  # Usamos leerHerramientas.html
 
-def leerHerramientas (request):
+def leerTutoriales(request):
+    tutoriales = Tutorial.objects.all()  # Recupera todos los tutoriales
+    contexto = {"tutoriales": tutoriales}
+    return render(request, "appgero/tutorial.html", contexto)  # Usamos tutorial.html
 
-    herramienta = Herramienta.objects.all()
-
-    contexto = {"herramientas":herramienta}
-
-    return render (request, "appgero/leerHerramientas.html", contexto)
+def detalleTutorial(request, id):
+    tutorial = Tutorial.objects.get(id=id)  # Obtiene un tutorial específico por ID
+    return render(request, "appgero/leerTutoriales.html", {'tutorial': tutorial})  # Usamos leerTutoriales.html

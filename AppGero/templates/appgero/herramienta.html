@@ -1,27 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
+{% load static %}
 
+<!DOCTYPE html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Lista de Herramientas</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
-
 <body>
-    {% extends "AppGero/padre.html" %}
-    {% load static %}
+    <header>
+        <h1>Lista de Herramientas</h1>
+        <nav>
+            <a href="{% url 'inicio' %}">Inicio</a>
+            <a href="{% url 'agregar_herramienta' %}">Agregar Herramienta</a>
+        </nav>
+    </header>
 
-    {% block title %}Herramientas{% endblock %}
-    {% block contenidoQueCambia %}
-    <h2>Herramientas</h2>
-    <ul>
-        <li>
-            <h3>{{ herramienta.nombre }}</h3>
-            <p>{{ herramienta.descripcion }}</p>
-            <a href="{{ herramienta.url }}">Más información</a>
-        </li>
-    </ul>
-    {% endblock %}
+    <main>
+        <h2>Herramientas Disponibles</h2>
+        <ul>
+            {% for herramienta in herramientas %}
+                <li>
+                    <strong>{{ herramienta.nombre }}</strong><br>
+                    <p>{{ herramienta.descripcion }}</p>
+                    <a href="{% url 'detalle_herramienta' herramienta.id %}">Leer más</a>
+                </li>
+            {% empty %}
+                <p>No hay herramientas disponibles.</p>
+            {% endfor %}
+        </ul>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Blog de Ciberseguridad</p>
+    </footer>
 </body>
-
 </html>
