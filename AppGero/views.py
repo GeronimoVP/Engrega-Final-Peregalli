@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from AppGero.forms import ArticuloForm, HerramientaForm
 from AppGero.models import Articulo, Herramienta, Tutorial
-from django.contrib.auth.forms import UserCreationForm
+from .forms import UserRegistrationForm
 from django.contrib import messages
 
 def inicio(request):
@@ -25,14 +25,13 @@ def login(request):
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = UserRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Usuario creado exitosamente.')
-            return redirect('login')  # Redirige a la página de inicio de sesión
+            return redirect('login')  # Redirige a la página de inicio de sesión después del registro
     else:
-        form = UserCreationForm()
-    return render(request, 'register.html', {'form': form})
+        form = UserRegistrationForm()
+    return render(request, 'Appgero/register.html', {'form': form})
 
 def agregar_tutorial(request):
     if request.method == "POST":  # Si se envió el formulario
