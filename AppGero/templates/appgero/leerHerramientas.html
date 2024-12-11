@@ -1,34 +1,24 @@
-{% load static %}
+{% extends 'AppGero/padre.html' %}
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ herramienta.nombre }}</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
-<body>
-    <header>
-        <h1>{{ herramienta.nombre }}</h1>
-        <nav>
-            <a href="{% url 'inicio' %}">Inicio</a>
-            <a href="{% url 'lista_herramientas' %}">Lista de Herramientas</a>
-        </nav>
-    </header>
+{% block content %}
+    <div class="container px-4 px-lg-5 py-5">
+        <header class="mb-4 bg-dark p-4 rounded">
+            <h1 class="text-center text-white">{{ herramienta.nombre }}</h1>
+        </header>
 
-    <main>
-        <h2>Descripción</h2>
-        <p>{{ herramienta.descripcion }}</p>
-        
-        <h3>Características</h3>
-        <p>{{ herramienta.caracteristicas }}</p>
+        <main>
+            <h2 class="text-dark mb-3">Descripción</h2>
+            <p class="text-dark">{{ herramienta.descripcion }}</p>
 
-        <p><strong>Fecha de Publicación:</strong> {{ herramienta.fecha_publicacion }}</p>
-    </main>
+            {% if herramienta.url %}
+                <h3 class="text-dark">Instrucciones de Descarga</h3>
+                <p class="text-dark">Para descargar la herramienta, haga clic en el siguiente enlace:</p>
+                <a href="{{ herramienta.url }}" class="btn btn-outline-primary" target="_blank">Descargar Herramienta</a>
+            {% else %}
+                <p class="text-dark">No hay enlace de descarga disponible.</p>
+            {% endif %}
+        </main>
+    </div>
+{% endblock %}
 
-    <footer>
-        <p>&copy; 2024 Blog de Ciberseguridad</p>
-    </footer>
-</body>
-</html>
+

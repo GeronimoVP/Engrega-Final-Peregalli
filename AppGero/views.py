@@ -19,6 +19,10 @@ def herramienta(request):
 def tutorial(request):
     return render (request, 'appgero/tutorial.html')
 
+def padre(request):
+    return render(request, 'appgero/padre.html')
+
+
 
 def agregar_usuario(request):
     if request.method == "POST":  # Si se envió el formulario

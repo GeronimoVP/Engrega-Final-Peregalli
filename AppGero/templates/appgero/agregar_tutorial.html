@@ -1,102 +1,36 @@
-{% load static %}
+{% extends 'AppGero/padre.html' %}
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agregar Tutorial</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-        }
-        header {
-            background: #333;
-            color: #fff;
-            padding: 1rem 0;
-            text-align: center;
-        }
-        header h1 {
-            margin: 0;
-        }
-        nav {
-            margin-top: 0.5rem;
-        }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 1rem;
-        }
-        main {
-            padding: 2rem;
-            max-width: 800px;
-            margin: 0 auto;
-            background: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        form label {
-            display: block;
-            margin: 0.5rem 0 0.2rem;
-        }
-        form input, form textarea, form button {
-            width: 100%;
-            padding: 0.5rem;
-            margin-bottom: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        form button {
-            background: #333;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-        }
-        form button:hover {
-            background: #555;
-        }
-        footer {
-            text-align: center;
-            padding: 1rem 0;
-            background: #333;
-            color: #fff;
-            margin-top: 2rem;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>Agregar un Nuevo Tutorial</h1>
-        <nav>
-            <a href="{% url 'inicio' %}">Inicio</a>
-            <a href="{% url 'lista_tutoriales' %}">Tutoriales</a>
-        </nav>
-    </header>
+{% block content %}
+    <div class="container px-4 px-lg-5 py-5">
+        <header class="mb-4 bg-dark p-4 rounded">
+            <h1 class="text-center text-white">Agregar un Nuevo Tutorial</h1>
+        </header>
 
-    <main>
-        <form action="" method="POST">
-            {% csrf_token %}
-            <label for="titulo">Título:</label>
-            <input type="text" id="titulo" name="titulo" required>
-            
-            <label for="descripcion">Descripción:</label>
-            <textarea id="descripcion" name="descripcion" rows="3" required></textarea>
-            
-            <label for="contenido">Contenido:</label>
-            <textarea id="contenido" name="contenido" rows="10" required></textarea>
-            
-            <label for="fecha_publicacion">Fecha de Publicación:</label>
-            <input type="date" id="fecha_publicacion" name="fecha_publicacion" required>
-            
-            <button type="submit">Guardar Tutorial</button>
-        </form>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 Blog de Ciberseguridad</p>
-    </footer>
-</body>
-</html>
+        <main>
+            <form action="" method="POST" class="bg-light p-4 rounded shadow">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="titulo" class="form-label">Título:</label>
+                    <input type="text" id="titulo" name="titulo" class="form-control" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="descripcion" class="form-label">Descripción:</label>
+                    <textarea id="descripcion" name="descripcion" rows="3" class="form-control" required></textarea>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="contenido" class="form-label">Contenido:</label>
+                    <textarea id="contenido" name="contenido" rows="10" class="form-control" required></textarea>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="fecha_publicacion" class="form-label">Fecha de Publicación:</label>
+                    <input type="date" id="fecha_publicacion" name="fecha_publicacion" class="form-control" required>
+                </div>
+                
+                <button type="submit" class="btn btn-dark w-100">Guardar Tutorial</button>
+            </form>
+        </main>
+    </div>
+{% endblock %}

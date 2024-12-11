@@ -1,34 +1,44 @@
-{% load static %}
+{% extends 'AppGero/padre.html' %}
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ tutorial.titulo }}</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
-<body>
-    <header>
-        <h1>{{ tutorial.titulo }}</h1>
-        <nav>
-            <a href="{% url 'inicio' %}">Inicio</a>
-            <a href="{% url 'lista_tutoriales' %}">Lista de Tutoriales</a>
-        </nav>
-    </header>
+{% block content %}
+    <div class="container px-4 px-lg-5 py-5">
+        <header class="mb-4 bg-dark p-4 rounded">
+            <h1 class="text-center text-white">{{ tutorial.titulo }}</h1>
+        </header>
 
-    <main>
-        <h2>Descripción</h2>
-        <p>{{ tutorial.descripcion }}</p>
-        
-        <h3>Contenido</h3>
-        <p>{{ tutorial.contenido }}</p>
+        <main>
+            <h2 class="text-dark mb-3">Descripción</h2>
+            <p class="text-dark">{{ tutorial.descripcion }}</p>
+            
+            <h3 class="text-dark">Contenido</h3>
+            <p class="text-dark">{{ tutorial.contenido }}</p>
 
-        <p><strong>Fecha de Publicación:</strong> {{ tutorial.fecha_publicacion }}</p>
-    </main>
+            <p><strong>Fecha de Publicación:</strong> {{ tutorial.fecha_publicacion }}</p>
+        </main>
+    </div>
+{% endblock %}
 
-    <footer>
-        <p>&copy; 2024 Blog de Ciberseguridad</p>
-    </footer>
-</body>
-</html>
+{% block extra_css %}
+    <style>
+        main {
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        header {
+            background-color: #343a40;
+        }
+        header h1 {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        main h2, main h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .text-dark {
+            color: #333;
+        }
+    </style>
+{% endblock %}

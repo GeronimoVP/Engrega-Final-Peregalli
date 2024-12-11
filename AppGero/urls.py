@@ -1,11 +1,7 @@
 from django.urls import path
 from AppGero import views
-from django.contrib.auth import views as auth_views
-
 
 urlpatterns = [
-    path('login/', auth_views.LoginView.as_view(), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('AppGero/inicio/', views.inicio, name='inicio' ),
     path('articulos/', views.leerArticulos, name='lista_articulos'),
     path('tutoriales/', views.leerTutoriales, name='lista_tutoriales'),
@@ -19,4 +15,5 @@ urlpatterns = [
     path('herramientas/<int:id>/', views.detalleHerramienta, name='detalle_herramienta'),
     path('articulos/<int:id>/', views.detalleArticulo, name='detalle_articulo'),
     path('tutoriales/<int:id>/', views.detalleTutorial, name='detalle_tutorial'),
+    path('padre/', views.padre, name='padre')
 ]
