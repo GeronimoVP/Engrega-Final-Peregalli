@@ -1,14 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from AppGero.forms import UsuarioForm, ArticuloForm, HerramientaForm
-from AppGero.models import Usuario, Articulo, Herramienta, Tutorial
-from .forms import BuscarUsuarioFormulario
+from AppGero.forms import ArticuloForm, HerramientaForm
+from AppGero.models import Articulo, Herramienta, Tutorial
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
 
 def inicio(request):
     return render(request, 'appgero/index.html')
-
-def usuario(request):
-    return render(request, 'appgero/usuario.html')
 
 def articulo(request):
     return render(request, 'appgero/articulo.html')
@@ -22,20 +20,19 @@ def tutorial(request):
 def padre(request):
     return render(request, 'appgero/padre.html')
 
+def login(request):
+    return render (request, 'appgero/login.html')
 
-
-def agregar_usuario(request):
-    if request.method == "POST":  # Si se envió el formulario
-        usuario = Usuario(nombre=request.POST['nombre'],
-        correo=request.POST['correo'],
-        contrasenia=request.POST['contrasenia'],
-        rol=request.POST['rol'])
-
-        usuario.save()  # Guarda el usuario en la base de datos
-
-        return redirect('inicio')  # Redirige a la página de inicio o a otra vista específica
-
-    return render(request, "appgero/agregar_usuario.html")
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Usuario creado exitosamente.')
+            return redirect('login')  # Redirige a la página de inicio de sesión
+    else:
+        form = UserCreationForm()
+    return render(request, 'register.html', {'form': form})
 
 def agregar_tutorial(request):
     if request.method == "POST":  # Si se envió el formulario
@@ -49,7 +46,6 @@ def agregar_tutorial(request):
         return redirect('inicio')  # Redirige a la página de inicio o a otra vista específica
     
     return render(request, "appgero/agregar_tutorial.html")
-
 
 
 def agregar_articulo(request):
@@ -78,26 +74,6 @@ def agregar_herramienta(request):
         return redirect('inicio')
 
     return render(request, 'appgero/agregar_herramienta.html')
-
-def buscar_usuario(request):
-    resultados = None
-    if request.method == "GET" and 'criterio' in request.GET:
-        formulario = BuscarUsuarioFormulario(request.GET)
-        if formulario.is_valid():
-            termino = formulario.cleaned_data['criterio']
-            resultados = Usuario.objects.filter(nombre__icontains=termino) | Usuario.objects.filter(correo__icontains=termino)
-    else:
-        formulario = BuscarUsuarioFormulario()
-
-    return render(request, 'appgero/buscar_usuario.html', {'formulario': formulario, 'resultados': resultados})
-
-def leerUsuarios (request):
-
-    usuario = Usuario.objects.all()
-
-    contexto = {"usuarios":usuario}
-
-    return render (request, "appgero/leerUsuarios.html", contexto)
 
 def leerArticulos(request):
     articulos = Articulo.objects.all()  # Recupera todos los artículos

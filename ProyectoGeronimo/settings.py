@@ -37,9 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'AppGero',
 ]
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -56,7 +54,7 @@ ROOT_URLCONF = 'ProyectoGeronimo.urls'
 TEMPLATES = [
 {
 'BACKEND': 'django.template.backends.django.DjangoTemplates',
-'DIRS': [BASE_DIR/'./AppGero/appgero/templates'],
+'DIRS': [BASE_DIR/'./AppGero/templates'],
 'APP_DIRS': True,
 'OPTIONS': {
 'context_processors': [
@@ -137,3 +135,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'AppGero'
     ]
+
+LOGIN_REDIRECT_URL = 'inicio'  # Cambia 'inicio' al nombre de tu vista de inicio
+LOGOUT_REDIRECT_URL = 'inicio'  # Cambia 'inicio' si corresponde

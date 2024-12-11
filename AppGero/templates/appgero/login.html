@@ -1,0 +1,12 @@
+{% extends 'AppGero/padre.html' %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center">Iniciar Sesión</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+    </form>
+</div>
+{% endblock %}
