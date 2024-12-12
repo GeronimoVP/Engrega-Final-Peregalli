@@ -100,3 +100,13 @@ def leerTutoriales(request):
 def detalleTutorial(request, id):
     tutorial = Tutorial.objects.get(id=id)  # Obtiene un tutorial específico por ID
     return render(request, "appgero/leerTutoriales.html", {'tutorial': tutorial})  # Usamos leerTutoriales.html
+
+def lista_tutoriales(request):
+    q = request.GET.get('q', '')  # Obtener el valor de búsqueda
+    if q:  # Si hay un valor de búsqueda
+        # Filtrar tutoriales que contengan la búsqueda en el título o descripción
+        tutoriales = Tutorial.objects.filter(titulo__icontains=q) | Tutorial.objects.filter(descripcion__icontains=q)
+    else:
+        tutoriales = Tutorial.objects.all()  # Si no hay búsqueda, mostrar todos los tutoriales
+
+    return render(request, 'appgero/tutorial.html', {'tutoriales': tutoriales})
