@@ -17,6 +17,16 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
 	    <link href="{%  static 'appgero/css/styles.css' %}" rel="stylesheet" />
+        <style>
+            .project-text a {
+                color: white; /* Color por defecto */
+                transition: color 0.3s; /* Transición suave para el cambio de color */
+            }
+        
+            .project-text a:hover {
+                color: blue; /* Color al pasar el mouse */
+            }
+        </style>
 
 
     </head>
@@ -66,7 +76,6 @@
                         </p>
                     </div>
                 </div>
-                <img class="img-fluid" src="assets/img/ipad.png" alt="..." />
             </div>
         </section>
         <!-- Projects-->
@@ -74,7 +83,7 @@
             <div class="container px-4 px-lg-5">
                 <!-- Featured Project Row-->
                 <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
-                    <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="assets/img/bg-masthead.jpg" alt="..." /></div>
+                    <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="{% static 'appgero/img/seguridad.jpg' %}" alt="..." /></div>
                     <div class="col-xl-4 col-lg-5">
                         <div class="featured-text text-center text-lg-left">
                             <h4>¿Por qué debo protegerme?</h4>
@@ -82,35 +91,47 @@
                         </div>
                     </div>
                 </div>
-                <!-- Project One Row-->
-                <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
-                    <div class="col-lg-6"><img class="img-fluid" src="assets/img/demo-image-01.jpg" alt="..." /></div>
-                    <div class="col-lg-6">
-                        <div class="bg-black text-center h-100 project">
-                            <div class="d-flex h-100">
-                                <div class="project-text w-100 my-auto text-center text-lg-left">
-                                    <h4 class="text-white">Articulos</h4>
-                                    <p class="mb-0 text-white-50">En los artículos de nuestra página web, encontrarás información esencial sobre ciberseguridad, desde conceptos básicos hasta prácticas avanzadas para proteger tu privacidad y tus datos en línea. Cada artículo está diseñado para ofrecerte consejos prácticos, noticias actualizadas y recursos útiles que te ayudarán a entender y mejorar tu seguridad en internet.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Project Two Row-->
-                <div class="row gx-0 justify-content-center">
-                    <div class="col-lg-6"><img class="img-fluid" src="assets/img/demo-image-02.jpg" alt="..." /></div>
-                    <div class="col-lg-6 order-lg-first">
-                        <div class="bg-black text-center h-100 project">
-                            <div class="d-flex h-100">
-                                <div class="project-text w-100 my-auto text-center text-lg-right">
-                                    <h4 class="text-white">Herramientas</h4>
-                                    <p class="mb-0 text-white-50">En la sección de herramientas de nuestra página web, encontrarás una variedad de recursos diseñados para mejorar tu seguridad en línea. Desde escáneres de vulnerabilidades hasta generadores de contraseñas seguras, cada herramienta está pensada para ayudarte a proteger tu información y privacidad en internet. Son fáciles de usar y están orientadas tanto a principiantes como a usuarios más avanzados, ofreciéndote soluciones prácticas y efectivas para enfrentar las amenazas cibernéticas más comunes.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<!-- Project One Row-->
+<div class="row gx-0 mb-5 mb-lg-0 justify-content-center align-items-center">
+    <div class="col-lg-6 text-center">
+        <img class="img-fluid" src="{% static 'appgero/img/hombre_con_tablet.jpg' %}" alt="..." />
+    </div>
+    <div class="col-lg-6">
+        <div class="bg-black text-center h-100 project">
+            <div class="d-flex h-100">
+                <div class="project-text w-100 my-auto text-center text-lg-left">
+                    <a href="/articulos" class="text-white text-decoration-none"> <!-- Enlace a la URL de Articulos -->
+                        <h4 class="text-white">Articulos</h4>
+                    </a>
+                    <p class="mb-0 text-white-50">En los artículos de nuestra página web, encontrarás información esencial sobre ciberseguridad, desde conceptos básicos hasta prácticas avanzadas para proteger tu privacidad y tus datos en línea. Cada artículo está diseñado para ofrecerte consejos prácticos, noticias actualizadas y recursos útiles que te ayudarán a entender y mejorar tu seguridad en internet.</p>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- Project Two Row-->
+<div class="row gx-0 mb-5 mb-lg-0 justify-content-center align-items-center"> <!-- Añadido mb-5 mb-lg-0 y align-items-center -->
+    <div class="col-lg-6">
+        <div class="bg-black text-center h-100 project">
+            <div class="d-flex h-100">
+                <div class="project-text w-100 my-auto text-center text-lg-left">
+                    <a href="/comunidad" class="text-white text-decoration-none"> <!-- Enlace a la URL de Comunidad -->
+                        <h4 class="text-white">Comunidad</h4>
+                    </a>
+                    <p class="mb-0 text-white-50">En nuestro blog no solo encontrarás información útil y actualizada sobre cómo protegerte en el mundo digital, ¡también formarás parte de una comunidad activa!
+
+                        Este es un espacio donde puedes aprender, compartir experiencias y resolver tus dudas sobre ciberseguridad. Nuestro foro está diseñado para que hagas preguntas, recibas respuestas de expertos y contribuyas con tus propios conocimientos.
+                        
+                        Desde consejos prácticos hasta debates sobre las últimas tendencias, aquí encontrarás un lugar para crecer y fortalecer tu seguridad en línea. ¡Únete a la conversación y juntos hagamos de internet un lugar más seguro! 🔐💬</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 text-center">
+        <img class="img-fluid" src="{% static 'appgero/img/comunidad.jpg' %}" alt="..." />
+    </div>
+</div>
         </section>
         <!-- Contact-->
         <section class="contact-section bg-black">

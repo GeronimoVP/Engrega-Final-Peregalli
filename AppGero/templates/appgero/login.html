@@ -1,8 +1,8 @@
 {% extends 'AppGero/padre.html' %}
 
 {% block content %}
-<div class="container">
-    <h2 class="text-center">Iniciar Sesión</h2>
+<div class="container text-center" style="margin-top: 150px; margin-bottom: 150px;">
+    <h2>Iniciar Sesión</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}

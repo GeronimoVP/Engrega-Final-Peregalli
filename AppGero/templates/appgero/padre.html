@@ -64,17 +64,24 @@
                     </p>
                 </div>
             </div>
-            <img class="img-fluid" src="{% static 'assets/img/ipad.png' %}" alt="..." />
         </div>
     </section>
 
 
     <!-- Espacio para que las plantillas hijas inserten su contenido -->
-    <div class="container px-4 px-lg-5">
-        {% block content %}
+    <div class="container px-4 px-lg-5" id="dynamic-content">        {% block content %}
         {% endblock %}
     </div>
 
     <!-- Footer-->
     <footer class="footer bg-black small text-center text-white-50">
         <div class="container px-4 px-lg-5">Copyright &copy; Your Website 
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    const dynamicContent = document.getElementById("dynamic-content");
+                    if (dynamicContent) {
+                        dynamicContent.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }
+                });
+            </script>
