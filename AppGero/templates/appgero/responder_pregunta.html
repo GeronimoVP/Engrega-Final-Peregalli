@@ -1,0 +1,21 @@
+{% extends 'AppGero/padre.html' %}
+
+{% block content %}
+    <div class="container px-4 px-lg-5 py-5">
+        <header class="mb-4 bg-dark p-4 rounded">
+            <h1 class="text-center text-white">Responder Pregunta</h1>
+        </header>
+
+        <h2 class="text-dark">{{ pregunta.titulo }}</h2>
+        <p>{{ pregunta.descripcion }}</p>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="respuesta" class="form-label">Tu Respuesta</label>
+                <textarea class="form-control" id="respuesta" name="respuesta" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-success">Enviar Respuesta</button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,6 +1,17 @@
 from django import forms
 from .models import Articulo, Herramienta, Tutorial
 from django.contrib.auth.models import User
+from .models import Pregunta, Respuesta
+
+class PreguntaForm(forms.ModelForm):
+    class Meta:
+        model = Pregunta
+        fields = ['titulo', 'contenido']
+
+class RespuestaForm(forms.ModelForm):
+    class Meta:
+        model = Respuesta
+        fields = ['contenido']
 
 
 class UserRegistrationForm(forms.ModelForm):

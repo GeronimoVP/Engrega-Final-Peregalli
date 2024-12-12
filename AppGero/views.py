@@ -4,6 +4,9 @@ from AppGero.forms import ArticuloForm, HerramientaForm
 from AppGero.models import Articulo, Herramienta, Tutorial
 from .forms import UserRegistrationForm
 from django.contrib import messages
+from .models import Pregunta, Respuesta
+from .forms import PreguntaForm, RespuestaForm
+
 
 def inicio(request):
     return render(request, 'appgero/index.html')
@@ -110,3 +113,33 @@ def lista_tutoriales(request):
         tutoriales = Tutorial.objects.all()  # Si no hay búsqueda, mostrar todos los tutoriales
 
     return render(request, 'appgero/tutorial.html', {'tutoriales': tutoriales})
+
+def comunidad(request):
+    preguntas = Pregunta.objects.all()
+    return render(request, 'comunidad.html', {'preguntas': preguntas})
+
+def crear_pregunta(request):
+    if request.method == 'POST':
+        form = PreguntaForm(request.POST)
+        if form.is_valid():
+            pregunta = form.save(commit=False)
+            pregunta.autor = request.user
+            pregunta.save()
+            return redirect('comunidad')
+    else:
+        form = PreguntaForm()
+    return render(request, 'crear_pregunta.html', {'form': form})
+
+def responder_pregunta(request, pregunta_id):
+    pregunta = Pregunta.objects.get(id=pregunta_id)
+    if request.method == 'POST':
+        form = RespuestaForm(request.POST)
+        if form.is_valid():
+            respuesta = form.save(commit=False)
+            respuesta.pregunta = pregunta
+            respuesta.autor = request.user
+            respuesta.save()
+            return redirect('comunidad')
+    else:
+        form = RespuestaForm()
+    return render(request, 'responder_pregunta.html', {'form': form, 'pregunta': pregunta})

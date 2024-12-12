@@ -1,8 +1,21 @@
 from django.urls import path
 from AppGero import views
 from django.contrib.auth import views as auth_views
+from django.urls import path
+from .views import lista_tutoriales
+from .views import comunidad, crear_pregunta, responder_pregunta
+
 
 urlpatterns = [
+    path('tutoriales/', lista_tutoriales, name='lista_tutoriales'),
+    # Otras rutas...
+]
+
+urlpatterns = [
+    path('comunidad/', comunidad, name='comunidad'),
+    path('comunidad/crear/', crear_pregunta, name='crear_pregunta'),
+    path('comunidad/responder/<int:pregunta_id>/', responder_pregunta, name='responder_pregunta'),
+    path('tutoriales/', lista_tutoriales, name='lista_tutoriales'),
     path('AppGero/inicio/', views.inicio, name='inicio' ),
     path('register/', views.register, name='register'),
     path('login/', auth_views.LoginView.as_view(template_name='AppGero/login.html'), name='login'),
@@ -16,4 +29,4 @@ urlpatterns = [
     path('herramientas/<int:id>/', views.detalleHerramienta, name='detalle_herramienta'),
     path('articulos/<int:id>/', views.detalleArticulo, name='detalle_articulo'),
     path('tutoriales/<int:id>/', views.detalleTutorial, name='detalle_tutorial'),
-]
+    ]
