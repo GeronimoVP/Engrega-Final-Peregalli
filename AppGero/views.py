@@ -1,12 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from AppGero.forms import ArticuloForm, HerramientaForm
+from AppGero.forms import ArticuloForm
 from AppGero.models import Articulo, Herramienta, Tutorial
 from .forms import UserRegistrationForm
 from django.contrib import messages
 from .models import Pregunta, Respuesta
 from .forms import PreguntaForm, RespuestaForm
-
 
 def inicio(request):
     return render(request, 'appgero/index.html')
@@ -25,6 +24,7 @@ def padre(request):
 
 def login(request):
     return render (request, 'appgero/login.html')
+
 
 def register(request):
     if request.method == 'POST':

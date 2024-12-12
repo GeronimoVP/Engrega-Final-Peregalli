@@ -3,6 +3,7 @@ from .models import Articulo, Herramienta, Tutorial
 from django.contrib.auth.models import User
 from .models import Pregunta, Respuesta
 
+
 class PreguntaForm(forms.ModelForm):
     class Meta:
         model = Pregunta
@@ -12,16 +13,6 @@ class RespuestaForm(forms.ModelForm):
     class Meta:
         model = Respuesta
         fields = ['contenido']
-
-
-from django import forms
-from django.contrib.auth.models import User
-
-from django import forms
-from django.contrib.auth.models import User
-
-from django import forms
-from django.contrib.auth.models import User
 
 class UserRegistrationForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput, label="Contraseña")
@@ -56,11 +47,6 @@ class ArticuloForm(forms.ModelForm):
     class Meta:
         model = Articulo
         fields = ['titulo', 'contenido', 'autor']
-
-class HerramientaForm(forms.ModelForm):
-    class Meta:
-        model = Herramienta
-        fields = ['nombre', 'descripcion', 'url']
 
 
 class TutorialForm(forms.ModelForm):

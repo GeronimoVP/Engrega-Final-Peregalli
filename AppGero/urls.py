@@ -5,12 +5,6 @@ from django.urls import path
 from .views import lista_tutoriales
 from .views import comunidad, crear_pregunta, responder_pregunta, detalle_pregunta
 
-
-urlpatterns = [
-    path('tutoriales/', lista_tutoriales, name='lista_tutoriales'),
-    # Otras rutas...
-]
-
 urlpatterns = [
     path('comunidad/', comunidad, name='comunidad'),
     path('comunidad/crear/', crear_pregunta, name='crear_pregunta'),
