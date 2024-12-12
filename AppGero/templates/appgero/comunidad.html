@@ -11,23 +11,23 @@
             <p class="lead">Aquí puedes interactuar con otros miembros, hacer preguntas y compartir tus conocimientos.</p>
 
             <div class="mb-4">
-                <h3 class="text-dark">Últimos Temas</h3>
+                <h3 class="text-dark">Últimas Preguntas</h3>
                 <ul class="list-group">
-                    {% for tema in temas %}
+                    {% for pregunta in preguntas %}
                         <li class="list-group-item mb-3">
-                            <strong>{{ tema.titulo }}</strong><br>
-                            <p>{{ tema.descripcion }}</p>
-                            <a href="{% url 'detalle_tema' tema.id %}" class="btn btn-outline-success btn-sm">Leer más</a>
+                            <strong>{{ pregunta.titulo }}</strong><br>
+                            <p>{{ pregunta.contenido }}</p>
+                            <a href="{% url 'detalle_pregunta' pregunta.id %}" class="btn btn-outline-success btn-sm">Leer más</a>
                         </li>
                     {% empty %}
-                        <p>No hay temas disponibles en este momento.</p>
+                        <p>No hay preguntas disponibles en este momento.</p>
                     {% endfor %}
                 </ul>
             </div>
 
             <div class="mb-4">
                 <h3 class="text-dark">Participa en la Comunidad</h3>
-                <a href="{% url 'crear_tema' %}" class="btn btn-warning text-dark">Crear Nuevo Tema</a>
+                <a href="{% url 'crear_pregunta' %}" class="btn btn-warning text-dark">Crear Nueva Pregunta</a>
             </div>
         </main>
     </div>

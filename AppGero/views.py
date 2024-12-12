@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from AppGero.forms import ArticuloForm, HerramientaForm
 from AppGero.models import Articulo, Herramienta, Tutorial
@@ -115,20 +115,41 @@ def lista_tutoriales(request):
     return render(request, 'appgero/tutorial.html', {'tutoriales': tutoriales})
 
 def comunidad(request):
-    preguntas = Pregunta.objects.all()
-    return render(request, 'comunidad.html', {'preguntas': preguntas})
+    preguntas = Pregunta.objects.all().order_by('-fecha_creacion')  # Obtener todas las preguntas
+    return render(request, 'appgero/comunidad.html', {'preguntas': preguntas})
+
+def detalle_pregunta(request, id):
+    pregunta = get_object_or_404(Pregunta, id=id)
+    respuestas = pregunta.respuestas.all().order_by('-fecha_creacion')  # Carga las respuestas ordenadas por fecha
+    form = RespuestaForm()  # Crea una instancia del formulario para respuestas
+
+    if request.method == 'POST':
+        form = RespuestaForm(request.POST)
+        if form.is_valid():
+            respuesta = form.save(commit=False)
+            respuesta.pregunta = pregunta  # Asigna la pregunta a la respuesta
+            respuesta.autor = request.user  # Asigna el autor
+            respuesta.save()  # Guarda la respuesta
+            return redirect('detalle_pregunta', id=pregunta.id)  # Redirige a la misma pregunta
+
+    return render(request, 'appgero/detalle_pregunta.html', {
+        'pregunta': pregunta,
+        'respuestas': respuestas,
+        'form': form,
+    })
 
 def crear_pregunta(request):
     if request.method == 'POST':
         form = PreguntaForm(request.POST)
         if form.is_valid():
             pregunta = form.save(commit=False)
-            pregunta.autor = request.user
-            pregunta.save()
-            return redirect('comunidad')
+            pregunta.autor = request.user  # Asigna el autor
+            pregunta.save()  # Guarda la pregunta en la base de datos
+            messages.success(request, 'Pregunta creada con éxito.')
+            return redirect('comunidad')  # Redirige a la vista de comunidad
     else:
-        form = PreguntaForm()
-    return render(request, 'crear_pregunta.html', {'form': form})
+        form = PreguntaForm()  # Crea un nuevo formulario vacío
+    return render(request, 'appgero/crear_pregunta.html', {'form': form})
 
 def responder_pregunta(request, pregunta_id):
     pregunta = Pregunta.objects.get(id=pregunta_id)
@@ -139,7 +160,8 @@ def responder_pregunta(request, pregunta_id):
             respuesta.pregunta = pregunta
             respuesta.autor = request.user
             respuesta.save()
-            return redirect('comunidad')
+            messages.success(request, 'Respuesta creada con éxito.')
+            return redirect('appgero/comunidad')
     else:
         form = RespuestaForm()
-    return render(request, 'responder_pregunta.html', {'form': form, 'pregunta': pregunta})
+    return render(request, 'appgero/responder_pregunta.html', {'form': form, 'pregunta': pregunta})

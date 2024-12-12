@@ -1,0 +1,32 @@
+{% extends 'appgero/padre.html' %}
+
+{% block content %}
+    <div class="container px-4 px-lg-5 py-5">
+        <h2>{{ pregunta.titulo }}</h2>
+        <p>{{ pregunta.contenido }}</p>
+        <p>Autor: {{ pregunta.autor.username }}</p>
+        <p>Fecha de creación: {{ pregunta.fecha_creacion }}</p>
+
+        <hr>
+
+        <h3>Respuestas</h3>
+        <ul class="list-group mb-4">
+            {% for respuesta in respuestas %}
+                <li class="list-group-item">
+                    <p>{{ respuesta.contenido }}</p>
+                    <p>Autor: {{ respuesta.autor.username }}</p>
+                    <p>Fecha: {{ respuesta.fecha_creacion }}</p>
+                </li>
+            {% empty %}
+                <p>No hay respuestas aún.</p>
+            {% endfor %}
+        </ul>
+
+        <h3>Responder a la Pregunta</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}  <!-- Renderiza el formulario -->
+            <button type="submit" class="btn btn-primary">Enviar Respuesta</button>
+        </form>
+    </div>
+{% endblock %}
