@@ -19,11 +19,7 @@
                     {{ form.contenido }}
                 </div>
 
-                <div class="mb-3">
-                    <label for="autor" class="form-label">Autor:</label>
-                    <input type="text" id="autor" name="autor" class="form-control" value="{{ user.username }}" readonly>
-                </div>
-
+                <!-- Eliminamos el campo de autor del formulario -->
                 <div class="mb-3">
                     <label for="imagen" class="form-label">Imagen:</label>
                     {{ form.imagen }}
@@ -34,5 +30,6 @@
         </main>
     </div>
 {% endblock %}
+
 
 

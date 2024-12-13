@@ -17,7 +17,7 @@ class Pregunta(models.Model):
     fecha_creacion = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.titulo
+        return f"{self.titulo} - {self.autor.email}"
 
 class Respuesta(models.Model):
     pregunta = models.ForeignKey(Pregunta, related_name='respuestas', on_delete=models.CASCADE)
@@ -31,11 +31,11 @@ class Respuesta(models.Model):
 class Articulo(models.Model):
     titulo = models.CharField(max_length=200)
     contenido = models.TextField()
-    autor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='articulos_creados')
+    autor = models.ForeignKey(User, on_delete=models.CASCADE)
     imagen = models.ImageField(upload_to='articulos/', null=True, blank=True)
     
     def __str__(self):
-        return self.titulo
+        return f"{self.titulo} - {self.autor.email}"
 
 class Tutorial(models.Model):
     titulo = models.CharField(max_length=200)

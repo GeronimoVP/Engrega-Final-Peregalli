@@ -69,15 +69,18 @@ def agregar_tutorial(request):
 
 @login_required
 def agregar_articulo(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         form = ArticuloForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            return redirect('inicio')  # Redirige al inicio después de guardar
+            articulo = form.save(commit=False)
+            articulo.autor = request.user  # Asigna el autor como el usuario actual
+            articulo.save()  # Guarda el artículo
+            return redirect('inicio')  # Redirige a la página de inicio o a otra vista específica
     else:
         form = ArticuloForm()
 
-    return render(request, 'appgero/agregar_articulo.html', {'form': form})
+    return render(request, "appgero/agregar_articulo.html", {"form": form})
+
 
 
 def leerArticulos(request):
