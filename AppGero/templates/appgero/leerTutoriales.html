@@ -15,6 +15,15 @@
 
             <p><strong>Fecha de Publicación:</strong> {{ tutorial.fecha_publicacion }}</p>
         </main>
+
+        <!-- Sección para agregar un nuevo tutorial -->
+        <div class="mb-4">
+            {% if user.is_authenticated %}
+            <a href="{% url 'agregar_tutorial' %}" class="btn btn-success">Agregar Tutorial</a>
+            {% else %}
+            <p class="text-danger">Iniciar sesión para compartir tus Tutoriales.</p>
+            {% endif %}
+        </div>
     </div>
 {% endblock %}
 

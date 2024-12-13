@@ -69,28 +69,39 @@ def agregar_tutorial(request):
         return redirect('inicio')  # Redirige a la página de inicio o a otra vista específica
     
     return render(request, "appgero/agregar_tutorial.html")
+    
 
 
 @login_required
-def agregar_articulo(request):
+def crear_articulo(request, id=None):
+    if id:
+        articulo = get_object_or_404(Articulo, id=id)
+    else:
+        articulo = None
+
     if request.method == "POST":
-        form = ArticuloForm(request.POST, request.FILES)
+        form = ArticuloForm(request.POST, request.FILES, instance=articulo)
         if form.is_valid():
             articulo = form.save(commit=False)
             articulo.autor = request.user  # Asigna el usuario actual como autor
             articulo.save()
             return redirect('lista_articulos')  # Redirige a la lista de artículos
     else:
-        form = ArticuloForm()
+        form = ArticuloForm(instance=articulo)
 
     return render(request, "appgero/agregar_articulo.html", {"form": form})
 
+@login_required
+def eliminar_articulo(request, id):
+    articulo = get_object_or_404(Articulo, id=id)
+    if request.method == 'POST':
+        articulo.delete()
+        return redirect('lista_articulos')  # Redirige a la lista de artículos
+    return render(request, 'appgero/eliminar_articulo.html', {'articulo': articulo})
 
-
-def leerArticulos(request):
+def lista_articulos(request):
     articulos = Articulo.objects.all()  # Recupera todos los artículos
-    contexto = {"articulos": articulos}
-    return render(request, "appgero/articulo.html", contexto)  # Usamos articulo.html
+    return render(request, "appgero/lista_articulos.html", {"articulos": articulos})
 
 def detalleArticulo(request, id):
     articulo = Articulo.objects.get(id=id)

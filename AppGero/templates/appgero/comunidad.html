@@ -27,7 +27,11 @@
 
             <div class="mb-4">
                 <h3 class="text-dark">Participa en la Comunidad</h3>
+                {% if user.is_authenticated %}
                 <a href="{% url 'crear_pregunta' %}" class="btn btn-warning text-dark">Crear Nueva Pregunta</a>
+                {% else %}
+                <p class="text-danger">Debes <a href="{% url 'login' %}">iniciar sesión</a> para crear una nueva pregunta.</p>
+                {% endif %}
             </div>
         </main>
     </div>

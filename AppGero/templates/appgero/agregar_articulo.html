@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container px-4 px-lg-5 py-5">
     <header class="mb-4 bg-dark p-4 rounded">
-        <h1 class="text-center text-white">Agregar Artículo</h1>
+        <h1 class="text-center text-white">{% if form.instance.id %}Actualizar{% else %}Agregar{% endif %} Artículo</h1>
     </header>
 
     <main>
@@ -24,12 +24,8 @@
                 {{ form.imagen }}
             </div>
 
-            <button type="submit" class="btn btn-dark w-100">Agregar Artículo</button>
+            <button type="submit" class="btn btn-dark w-100">{% if form.instance.id %}Actualizar{% else %}Agregar{% endif %} Artículo</button>
         </form>
     </main>
 </div>
 {% endblock %}
-
-
-
-
