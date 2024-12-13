@@ -1,53 +1,53 @@
 {% extends 'AppGero/padre.html' %}
 
 {% block content %}
-    <div class="container px-4 px-lg-5 py-5">
-        <header class="mb-4 bg-dark p-4 rounded">
-            <h1 class="text-center text-white">{{ tutorial.titulo }}</h1>
-        </header>
+<div class="container px-4 px-lg-5 py-5">
+    <header class="mb-4 bg-dark p-4 rounded">
+        <h1 class="text-center text-white">{{ tutorial.titulo }}</h1>
+    </header>
 
-        <main>
-            <h2 class="text-dark mb-3">Descripción</h2>
-            <p class="text-dark">{{ tutorial.descripcion }}</p>
-            
-            <h3 class="text-dark">Contenido</h3>
-            <p class="text-dark">{{ tutorial.contenido }}</p>
+    <main>
+        <h2 class="text-dark mb-3">Descripción</h2>
+        <p class="text-dark" style="line-height: 1.6;">{{ tutorial.descripcion|linebreaks }}</p>  <!-- Se aplica linebreaks para respetar los saltos de línea -->
+        
+        <h3 class="text-dark">Contenido</h3>
+        <p class="text-dark" style="line-height: 1.6;">{{ tutorial.contenido|linebreaks }}</p>  <!-- Se aplica linebreaks para respetar los saltos de línea -->
 
-            <p><strong>Fecha de Publicación:</strong> {{ tutorial.fecha_publicacion }}</p>
-        </main>
+        <p><strong>Fecha de Publicación:</strong> {{ tutorial.fecha_publicacion }}</p>
+    </main>
 
-        <!-- Sección para agregar un nuevo tutorial -->
-        <div class="mb-4">
-            {% if user.is_authenticated %}
-            <a href="{% url 'agregar_tutorial' %}" class="btn btn-success">Agregar Tutorial</a>
-            {% else %}
-            <p class="text-danger">Iniciar sesión para compartir tus Tutoriales.</p>
-            {% endif %}
-        </div>
+    <!-- Sección para agregar un nuevo tutorial -->
+    <div class="mb-4">
+        {% if user.is_authenticated %}
+        <a href="{% url 'agregar_tutorial' %}" class="btn btn-success">Agregar Tutorial</a>
+        {% else %}
+        <p class="text-danger">Iniciar sesión para compartir tus Tutoriales.</p>
+        {% endif %}
     </div>
+</div>
 {% endblock %}
 
 {% block extra_css %}
-    <style>
-        main {
-            background-color: #f9f9f9;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        header {
-            background-color: #343a40;
-        }
-        header h1 {
-            font-size: 2rem;
-            font-weight: bold;
-        }
-        main h2, main h3 {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        .text-dark {
-            color: #333;
-        }
-    </style>
+<style>
+    main {
+        background-color: #f9f9f9;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    header {
+        background-color: #343a40;
+    }
+    header h1 {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+    main h2, main h3 {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    .text-dark {
+        color: #333;
+    }
+</style>
 {% endblock %}

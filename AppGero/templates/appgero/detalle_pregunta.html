@@ -1,34 +1,151 @@
 {% extends 'appgero/padre.html' %}
 
 {% block content %}
-    <div class="container px-4 px-lg-5 py-5">
-        <h2>{{ pregunta.titulo }}</h2>
+<div class="container px-4 px-lg-5 py-5">
+    <!-- Título de la pregunta -->
+    <div class="question-header mb-4">
+        <h2 class="text-primary">{{ pregunta.titulo }}</h2>
+        <p class="text-muted">Publicado por: <strong>{{ pregunta.autor.username }}</strong></p>
+        <p class="text-muted">Fecha de creación: <strong>{{ pregunta.fecha_creacion }}</strong></p>
+    </div>
+
+    <!-- Contenido de la pregunta -->
+    <div class="question-content mb-4 p-4 rounded shadow-sm" style="background-color: #d4f8d4; color: #333;">
         <p>{{ pregunta.contenido }}</p>
-        <p>Autor: {{ pregunta.autor.username }}</p>
-        <p>Fecha de creación: {{ pregunta.fecha_creacion }}</p>
+    </div>
 
-        <hr>
+    <hr class="my-4">
 
-        <h3>Respuestas</h3>
-        <ul class="list-group mb-4">
+    <!-- Sección de respuestas -->
+    <div class="responses">
+        <h3 class="text-dark">Respuestas</h3>
+        <div class="response-container">
             {% for respuesta in respuestas %}
-                <li class="list-group-item">
-                    <p>{{ respuesta.contenido }}</p>
-                    <p>Autor: {{ respuesta.autor.username }}</p>
-                    <p>Fecha: {{ respuesta.fecha_creacion }}</p>
-                </li>
+                <div class="response-item {% cycle 'response-left' 'response-right' %}">
+                    <div class="d-flex flex-column">
+                        <div class="response-text">
+                            <p class="response-content">{{ respuesta.contenido }}</p>
+                            <p class="text-muted">Autor: <strong>{{ respuesta.autor.username }}</strong></p>
+                            <p class="text-muted">Fecha: <strong>{{ respuesta.fecha_creacion }}</strong></p>
+                        </div>
+                    </div>
+                </div>
             {% empty %}
-                <p>No hay respuestas aún.</p>
+                <p class="text-muted">No hay respuestas aún. ¡Sé el primero en responder!</p>
             {% endfor %}
-        </ul>
+        </div>
 
+        <!-- Formulario de respuesta -->
         {% if user.is_authenticated %}
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Responder</button>
-        </form>
-    {% else %}
-        <p>Para responder, debes <a href="{% url 'login' %}">iniciar sesión</a>.</p>
-    {% endif %}
+            <div class="response-form bg-light p-4 rounded shadow" style="background-color: #f9f9f9;">
+                <h4 class="text-primary">Deja tu respuesta:</h4>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ form.as_p }}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Responder</button>
+                </form>
+            </div>
+        {% else %}
+            <p class="text-muted mt-4">Para responder, debes <a href="{% url 'login' %}" class="btn-link">iniciar sesión</a>.</p>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}
+
+<style>
+    /* Estilos generales */
+    .question-header h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #007bff;
+    }
+
+    .question-content p {
+        font-size: 1.2rem;
+        line-height: 1.8;
+    }
+
+    /* Estilo para las respuestas */
+    .response-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;  /* Espacio entre respuestas */
+    }
+
+    /* Estilos para las respuestas */
+    .response-item {
+        background-color: #cce7ff;
+        color: #333;
+        border-radius: 10px;
+        padding: 15px;
+        max-width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .response-left {
+        align-self: flex-start;  /* Respuesta a la izquierda */
+    }
+
+    .response-right {
+        align-self: flex-end;  /* Respuesta a la derecha */
+    }
+
+    .response-text {
+        max-width: 90%;
+    }
+
+    .response-content {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .responses h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+    /* Formulario de respuesta */
+    .response-form {
+        margin-top: 20px;
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    .response-form h4 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    .response-form .form-group {
+        margin-bottom: 1rem;
+    }
+
+    /* Estilo de los enlaces */
+    .btn-link {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .btn-link:hover {
+        text-decoration: underline;
+    }
+
+    /* Estilo del cuadro de texto de respuesta */
+    .form-group textarea {
+        width: 100%;
+        height: 120px;
+        resize: vertical;
+    }
+
+    /* Estilo para las respuestas y sus bordes */
+    .response-item {
+        margin-bottom: 20px;
+    }
+</style>

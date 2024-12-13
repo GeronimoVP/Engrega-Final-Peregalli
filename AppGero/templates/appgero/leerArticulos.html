@@ -7,45 +7,46 @@
         <p class="text-white-50">Por: {{ articulo.autor.email }}</p>
     </header>
 
-    <main>
-        {% if articulo.imagen %}
-        <div class="text-center mb-4">
-            <img src="{{ articulo.imagen.url }}" alt="Imagen del artículo" class="img-fluid rounded shadow">
-        </div>
-        {% endif %}
-
-        <h2 class="text-dark mb-3">Contenido</h2>
-        <p class="text-dark">{{ articulo.contenido }}</p>
-
-        <!-- Sección de comentarios -->
-        <section class="mt-5">
-            <h3 class="text-dark">Comentarios</h3>
-            {% for comentario in comentarios %}
-            <div class="border p-3 mb-3 rounded">
-                <p><strong>{{ comentario.autor.email }}</strong> dijo:</p>
-                <p>{{ comentario.contenido }}</p>
-                <small class="text-muted">Publicado el {{ comentario.fecha_creacion }}</small>
+    <main class="row">
+        <div class="col-md-6">
+            {% if articulo.imagen %}
+            <div class="text-center mb-4">
+                <img src="{{ articulo.imagen.url }}" alt="Imagen del artículo" class="img-fluid rounded shadow" style="max-width: 100%; height: auto; max-height: 300px;">
             </div>
-            {% empty %}
-            <p class="text-muted">No hay comentarios aún. ¡Sé el primero en comentar!</p>
-            {% endfor %}
-
-            <!-- Formulario para agregar comentarios -->
-            {% if user.is_authenticated %}
-            <form method="POST" class="mt-4">
-                {% csrf_token %}
-                <div class="mb-3">
-                    <label for="comentario" class="form-label">Escribe un comentario:</label>
-                    {{ form.contenido }}
-                </div>
-                <button type="submit" class="btn btn-primary">Enviar</button>
-            </form>
-            {% else %}
-            <p class="text-muted">Inicia sesión para dejar un comentario.</p>
             {% endif %}
-        </section>
+        </div>
+        <div class="col-md-6">
+            <h2 class="text-dark mb-3">Contenido</h2>
+            <p class="text-dark">{{ articulo.contenido|linebreaks }}</p>
+        </div>
     </main>
+
+    <!-- Sección de comentarios -->
+    <section class="mt-5">
+        <h3 class="text-dark">Comentarios</h3>
+        {% for comentario in comentarios %}
+        <div class="border p-3 mb-3 rounded">
+            <p><strong>{{ comentario.autor.email }}</strong> dijo:</p>
+            <p>{{ comentario.contenido }}</p>
+            <small class="text-muted">Publicado el {{ comentario.fecha_creacion }}</small>
+        </div>
+        {% empty %}
+        <p class="text-muted">No hay comentarios aún. ¡Sé el primero en comentar!</p>
+        {% endfor %}
+
+        <!-- Formulario para agregar comentarios -->
+        {% if user.is_authenticated %}
+        <form method="POST" class="mt-4">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="comentario" class="form-label">Escribe un comentario:</label>
+                {{ form.contenido }}
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+        {% else %}
+        <p class="text-muted">Inicia sesión para dejar un comentario.</p>
+        {% endif %}
+    </section>
 </div>
 {% endblock %}
-
-
