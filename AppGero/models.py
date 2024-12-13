@@ -42,3 +42,12 @@ class Tutorial(models.Model):
     descripcion = models.TextField()
     contenido = models.TextField()
     fecha_publicacion = models.DateTimeField(auto_now_add=True)
+
+class Comentario(models.Model):
+    articulo = models.ForeignKey('Articulo', on_delete=models.CASCADE, related_name='comentarios')
+    autor = models.ForeignKey(User, on_delete=models.CASCADE)
+    contenido = models.TextField()
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Comentario de {self.autor.email} en {self.articulo.titulo}"

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from AppGero.forms import ArticuloForm
 from AppGero.models import Articulo, Tutorial
-from .forms import UserRegistrationForm, UserProfileForm, PreguntaForm, RespuestaForm
+from .forms import UserRegistrationForm, UserProfileForm, PreguntaForm, RespuestaForm, ComentarioForm
 from django.contrib import messages
 from .models import Pregunta, Respuesta, Articulo, UserProfile
 from django.contrib.auth.decorators import login_required
@@ -73,9 +73,9 @@ def agregar_articulo(request):
         form = ArticuloForm(request.POST, request.FILES)
         if form.is_valid():
             articulo = form.save(commit=False)
-            articulo.autor = request.user  # Asigna el autor como el usuario actual
-            articulo.save()  # Guarda el artículo
-            return redirect('inicio')  # Redirige a la página de inicio o a otra vista específica
+            articulo.autor = request.user  # Asigna el usuario actual como autor
+            articulo.save()
+            return redirect('lista_articulos')  # Redirige a la lista de artículos
     else:
         form = ArticuloForm()
 
@@ -89,8 +89,25 @@ def leerArticulos(request):
     return render(request, "appgero/articulo.html", contexto)  # Usamos articulo.html
 
 def detalleArticulo(request, id):
-    articulo = Articulo.objects.get(id=id)  # Obtiene un artículo específico por ID
-    return render(request, "appgero/leerArticulos.html", {'articulo': articulo})  # Usamos leerArticulo.htmlp
+    articulo = Articulo.objects.get(id=id)
+    comentarios = articulo.comentarios.all()
+
+    if request.method == "POST":
+        form = ComentarioForm(request.POST)
+        if form.is_valid():
+            comentario = form.save(commit=False)
+            comentario.articulo = articulo
+            comentario.autor = request.user
+            comentario.save()
+            return redirect('detalle_articulo', id=articulo.id)
+    else:
+        form = ComentarioForm()
+
+    return render(request, "appgero/leerArticulos.html", {
+        'articulo': articulo,
+        'comentarios': comentarios,
+        'form': form
+    })
 
 def leerTutoriales(request):
     tutoriales = Tutorial.objects.all()  # Recupera todos los tutoriales
