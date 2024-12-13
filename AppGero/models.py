@@ -6,9 +6,13 @@ class UserProfile(models.Model):
     profile_picture = models.ImageField(upload_to='profile_pictures/', blank=True, null=True)
     nombre = models.CharField(max_length=30, blank=True, null=True)
     apellido = models.CharField(max_length=30, blank=True, null=True)
+    edad = models.IntegerField(blank=True, null=True)
+    profesion = models.CharField(max_length=100, blank=True, null=True)
+    estudios = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self):
         return self.user.username
+
 
 class Pregunta(models.Model):
     titulo = models.CharField(max_length=200)
@@ -42,6 +46,8 @@ class Tutorial(models.Model):
     descripcion = models.TextField()
     contenido = models.TextField()
     fecha_publicacion = models.DateTimeField(auto_now_add=True)
+    
+
 
 class Comentario(models.Model):
     articulo = models.ForeignKey('Articulo', on_delete=models.CASCADE, related_name='comentarios')

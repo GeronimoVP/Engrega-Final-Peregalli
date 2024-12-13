@@ -40,7 +40,11 @@ def profile_view(request):
     else:
         form = UserProfileForm(instance=user_profile)
 
-    return render(request, 'AppGero/profile.html', {'form': form, 'user_profile': user_profile})
+    return render(request, 'AppGero/profile.html', {
+        'form': form,
+        'user_profile': user_profile,
+    })
+
 
 
 def register(request):

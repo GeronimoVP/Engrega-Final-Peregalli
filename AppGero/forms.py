@@ -6,7 +6,7 @@ from django.db import models
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ['profile_picture', 'nombre', 'apellido']
+        fields = ['profile_picture', 'nombre', 'apellido', 'edad', 'profesion', 'estudios']
 
 
 class PreguntaForm(forms.ModelForm):
