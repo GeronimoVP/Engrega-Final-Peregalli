@@ -4,8 +4,9 @@ from AppGero.forms import ArticuloForm
 from AppGero.models import Articulo, Tutorial
 from .forms import UserRegistrationForm, UserProfileForm, PreguntaForm, RespuestaForm, ComentarioForm
 from django.contrib import messages
-from .models import Pregunta, Respuesta, Articulo, UserProfile
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login
+from .models import Pregunta, Respuesta, Articulo, UserProfile
 
 def inicio(request):
     return render(request, 'appgero/index.html')
@@ -46,16 +47,20 @@ def profile_view(request):
     })
 
 
-
 def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            return redirect('profile')  # Redirige al perfil del usuario
+            # Guarda el usuario
+            form.save()
+
+            # Redirige al usuario a la página de inicio de sesión
+            return redirect('login')  # Asegúrate de usar el nombre correcto de la URL para iniciar sesión
     else:
         form = UserRegistrationForm()
-    return render(request, 'Appgero/register.html', {'form': form})
+
+    return render(request, 'AppGero/register.html', {'form': form})
+
 
 def agregar_tutorial(request):
     if request.method == "POST":  # Si se envió el formulario
