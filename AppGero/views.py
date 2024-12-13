@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from AppGero.forms import ArticuloForm
-from AppGero.models import Articulo, Herramienta, Tutorial
-from .forms import UserRegistrationForm
+from AppGero.models import Articulo, Tutorial
+from .forms import UserRegistrationForm, UserProfileForm, PreguntaForm, RespuestaForm
 from django.contrib import messages
-from .models import Pregunta, Respuesta
-from .forms import PreguntaForm, RespuestaForm
+from .models import Pregunta, Respuesta, Articulo, UserProfile
+from django.contrib.auth.decorators import login_required
 
 def inicio(request):
     return render(request, 'appgero/index.html')
@@ -26,12 +26,29 @@ def login(request):
     return render (request, 'appgero/login.html')
 
 
+
+
+@login_required
+def profile_view(request):
+    user_profile, created = UserProfile.objects.get_or_create(user=request.user)
+
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, request.FILES, instance=user_profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = UserProfileForm(instance=user_profile)
+
+    return render(request, 'AppGero/profile.html', {'form': form, 'user_profile': user_profile})
+
+
 def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('login')  # Redirige a la página de inicio de sesión después del registro
+            user = form.save()
+            return redirect('profile')  # Redirige al perfil del usuario
     else:
         form = UserRegistrationForm()
     return render(request, 'Appgero/register.html', {'form': form})
@@ -50,32 +67,18 @@ def agregar_tutorial(request):
     return render(request, "appgero/agregar_tutorial.html")
 
 
+@login_required
 def agregar_articulo(request):
-    if request.method == "POST":  # Si se envió el formulario
-        print("entra1")
-        articulo = Articulo(titulo=request.POST["titulo"],
-        contenido=request.POST["contenido"],
-        autor=request.POST["autor"])
-        print ("entra2")  # Crea un objeto Articulo
+    if request.method == 'POST':
+        form = ArticuloForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('inicio')  # Redirige al inicio después de guardar
+    else:
+        form = ArticuloForm()
 
-        articulo.save()  # Guarda el artículo en la base de datos
-        
-        return redirect('inicio')  # Redirige a la página de inicio o a otra vista específica
-    
-    return render(request, "appgero/agregar_articulo.html")
+    return render(request, 'appgero/agregar_articulo.html', {'form': form})
 
-
-def agregar_herramienta(request):
-    if request.method == "POST":
-        herramienta = Herramienta(nombre=request.POST ["nombre"],
-        descripcion=request.POST["descripcion"],
-        url=request.POST["url"])
-
-        herramienta.save()
-
-        return redirect('inicio')
-
-    return render(request, 'appgero/agregar_herramienta.html')
 
 def leerArticulos(request):
     articulos = Articulo.objects.all()  # Recupera todos los artículos
@@ -84,16 +87,7 @@ def leerArticulos(request):
 
 def detalleArticulo(request, id):
     articulo = Articulo.objects.get(id=id)  # Obtiene un artículo específico por ID
-    return render(request, "appgero/leerArticulos.html", {'articulo': articulo})  # Usamos leerArticulo.html
-
-def leerHerramientas(request):
-    herramientas = Herramienta.objects.all()  # Recupera todas las herramientas
-    contexto = {"herramientas": herramientas}
-    return render(request, "appgero/herramienta.html", contexto)  # Usamos herramienta.html
-
-def detalleHerramienta(request, id):
-    herramienta = Herramienta.objects.get(id=id)  # Obtiene una herramienta específica por ID
-    return render(request, "appgero/leerHerramientas.html", {'herramienta': herramienta})  # Usamos leerHerramientas.html
+    return render(request, "appgero/leerArticulos.html", {'articulo': articulo})  # Usamos leerArticulo.htmlp
 
 def leerTutoriales(request):
     tutoriales = Tutorial.objects.all()  # Recupera todos los tutoriales

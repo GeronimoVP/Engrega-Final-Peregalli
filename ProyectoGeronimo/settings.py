@@ -138,3 +138,6 @@ INSTALLED_APPS = [
 
 LOGIN_REDIRECT_URL = 'inicio'  # Cambia 'inicio' al nombre de tu vista de inicio
 LOGOUT_REDIRECT_URL = 'inicio'  # Cambia 'inicio' si corresponde
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'

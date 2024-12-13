@@ -22,11 +22,13 @@
             {% endfor %}
         </ul>
 
-        <h3>Responder a la Pregunta</h3>
+        {% if user.is_authenticated %}
         <form method="post">
             {% csrf_token %}
-            {{ form.as_p }}  <!-- Renderiza el formulario -->
-            <button type="submit" class="btn btn-primary">Enviar Respuesta</button>
+            {{ form.as_p }}
+            <button type="submit">Responder</button>
         </form>
-    </div>
+    {% else %}
+        <p>Para responder, debes <a href="{% url 'login' %}">iniciar sesión</a>.</p>
+    {% endif %}
 {% endblock %}

@@ -1,7 +1,12 @@
 from django import forms
-from .models import Articulo, Herramienta, Tutorial
+from .models import Tutorial, Pregunta, Respuesta, UserProfile, Articulo
 from django.contrib.auth.models import User
-from .models import Pregunta, Respuesta
+from django.db import models
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['profile_picture', 'nombre', 'apellido']
 
 
 class PreguntaForm(forms.ModelForm):
@@ -41,12 +46,11 @@ class UserRegistrationForm(forms.ModelForm):
         return user
 
 
-
-
 class ArticuloForm(forms.ModelForm):
     class Meta:
         model = Articulo
-        fields = ['titulo', 'contenido', 'autor']
+        fields = ['titulo', 'contenido', 'autor', 'imagen']
+
 
 
 class TutorialForm(forms.ModelForm):

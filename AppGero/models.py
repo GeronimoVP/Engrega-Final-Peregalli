@@ -1,6 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile_picture = models.ImageField(upload_to='profile_pictures/', blank=True, null=True)
+    nombre = models.CharField(max_length=30, blank=True, null=True)
+    apellido = models.CharField(max_length=30, blank=True, null=True)
+
+    def __str__(self):
+        return self.user.username
+
 class Pregunta(models.Model):
     titulo = models.CharField(max_length=200)
     contenido = models.TextField()
@@ -19,26 +28,14 @@ class Respuesta(models.Model):
     def __str__(self):
         return f'Respuesta a: {self.pregunta.titulo}'
 
-# Modelo para Articulo
 class Articulo(models.Model):
     titulo = models.CharField(max_length=200)
     contenido = models.TextField()
-    autor = models.CharField(max_length=100)
-
-    def __str__(self):
-        return f"{self.titulo}, {self.contenido}, {self.autor}"
-
-
-# Modelo para Herramienta
-class Herramienta(models.Model):
-    nombre = models.CharField(max_length=100)
-    descripcion = models.TextField()
-    url = models.URLField(null=True, blank=True)
-
-    def __str__(self):
-        return f"{self.nombre}, {self.descripcion}, {self.url}"
+    autor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='articulos_creados')
+    imagen = models.ImageField(upload_to='articulos/', null=True, blank=True)
     
-
+    def __str__(self):
+        return self.titulo
 
 class Tutorial(models.Model):
     titulo = models.CharField(max_length=200)
