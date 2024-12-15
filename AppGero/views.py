@@ -2,11 +2,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from AppGero.forms import ArticuloForm
 from AppGero.models import Articulo, Tutorial
-from .forms import UserRegistrationForm, UserProfileForm, PreguntaForm, RespuestaForm, ComentarioForm
+from .forms import UserRegistrationForm, UserProfileForm, PreguntaForm, RespuestaForm, ComentarioForm, TutorialForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 from .models import Pregunta, Respuesta, Articulo, UserProfile
+from .utils import extract_video_id  # Importa la función
 
 def inicio(request):
     return render(request, 'appgero/index.html')
@@ -63,17 +64,17 @@ def register(request):
 
 
 def agregar_tutorial(request):
-    if request.method == "POST":  # Si se envió el formulario
-        tutorial = Tutorial(titulo=request.POST["titulo"],
-        descripcion=request.POST["descripcion"],
-        contenido=request.POST["contenido"],
-        fecha_publicacion=request.POST["fecha_publicacion"])
-
-        tutorial.save()  # Guarda el artículo en la base de datos
-        
-        return redirect('inicio')  # Redirige a la página de inicio o a otra vista específica
+    if request.method == "POST":
+        form = TutorialForm(request.POST)
+        if form.is_valid():
+            tutorial = form.save(commit=False)
+            tutorial.video_id = extract_video_id(tutorial.video_url)  # Extrae el ID del video
+            tutorial.save()
+            return redirect('inicio')
+    else:
+        form = TutorialForm()
     
-    return render(request, "appgero/agregar_tutorial.html")
+    return render(request, "appgero/agregar_tutorial.html", {'form': form})
     
 
 

@@ -7,7 +7,7 @@
         </header>
 
         <main>
-            <form action="" method="POST" class="bg-light p-4 rounded shadow">
+            <form action="" method="POST" class="bg-light p-4 rounded shadow" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="mb-3">
                     <label for="titulo" class="form-label">Título:</label>
@@ -25,8 +25,13 @@
                 </div>
                 
                 <div class="mb-3">
-                    <label for="fecha_publicacion" class="form-label">Fecha de Publicación:</label>
-                    <input type="date" id="fecha_publicacion" name="fecha_publicacion" class="form-control" required>
+                    <label for="imagen" class="form-label">Imagen:</label>
+                    <input type="file" id="imagen" name="imagen" class="form-control" accept="image/*">
+                </div>
+
+                <div class="mb-3">
+                    <label for="video_url" class="form-label">Enlace al Video de YouTube:</label>
+                    <input type="url" id="video_url" name="video_url" class="form-control" placeholder="https://www.youtube.com/watch?v=XXXXXX">
                 </div>
                 
                 <button type="submit" class="btn btn-dark w-100">Guardar Tutorial</button>

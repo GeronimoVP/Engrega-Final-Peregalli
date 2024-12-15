@@ -55,8 +55,8 @@ class ArticuloForm(forms.ModelForm):
 
 class TutorialForm(forms.ModelForm):
     class Meta:
-        model: Tutorial
-        fields = ['titulo', 'descripcion', 'contenido', 'fecha_publicacion']
+        model = Tutorial
+        fields = ['titulo', 'descripcion', 'contenido', 'imagen', 'video_url']  # Agrega imagen y video_url
 
 
 class ComentarioForm(forms.ModelForm):

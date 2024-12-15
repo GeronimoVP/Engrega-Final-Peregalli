@@ -46,8 +46,11 @@ class Tutorial(models.Model):
     descripcion = models.TextField()
     contenido = models.TextField()
     fecha_publicacion = models.DateTimeField(auto_now_add=True)
-    
+    imagen = models.ImageField(upload_to='tutoriales/', blank=True, null=True)  # Campo para la imagen
+    video_url = models.URLField(blank=True, null=True)  # Enlace al video de YouTube
 
+    def __str__(self):
+        return self.titulo
 
 class Comentario(models.Model):
     articulo = models.ForeignKey('Articulo', on_delete=models.CASCADE, related_name='comentarios')

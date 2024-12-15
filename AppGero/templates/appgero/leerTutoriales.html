@@ -2,52 +2,106 @@
 
 {% block content %}
 <div class="container px-4 px-lg-5 py-5">
+    <!-- Encabezado -->
     <header class="mb-4 bg-dark p-4 rounded">
         <h1 class="text-center text-white">{{ tutorial.titulo }}</h1>
     </header>
 
-    <main>
-        <h2 class="text-dark mb-3">Descripción</h2>
-        <p class="text-dark" style="line-height: 1.6;">{{ tutorial.descripcion|linebreaks }}</p>  <!-- Se aplica linebreaks para respetar los saltos de línea -->
-        
-        <h3 class="text-dark">Contenido</h3>
-        <p class="text-dark" style="line-height: 1.6;">{{ tutorial.contenido|linebreaks }}</p>  <!-- Se aplica linebreaks para respetar los saltos de línea -->
+    <!-- Contenido Principal -->
+    <main class="row bg-light shadow-sm rounded p-4">
+        <!-- Sección de Texto -->
+        <div class="col-md-6">
+            <!-- Descripción -->
+            <div class="section mb-4">
+                <h2 class="section-title">Descripción</h2>
+                <hr class="section-divider">
+                <p class="text-dark" style="line-height: 1.8;">{{ tutorial.descripcion|linebreaks }}</p>
+            </div>
 
-        <p><strong>Fecha de Publicación:</strong> {{ tutorial.fecha_publicacion }}</p>
+            <!-- Contenido -->
+            <div class="section mb-4">
+                <h2 class="section-title">Contenido</h2>
+                <hr class="section-divider">
+                <p class="text-dark" style="line-height: 1.8;">{{ tutorial.contenido|linebreaks }}</p>
+            </div>
+
+            <!-- Fecha de Publicación -->
+            <div class="section mb-4">
+                <p><strong>Fecha de Publicación:</strong> {{ tutorial.fecha_publicacion }}</p>
+            </div>
+
+            <!-- Video Tutorial -->
+            {% if tutorial.video_url %}
+                <div class="section">
+                    <h3 class="section-title">Ver Video Tutorial</h3>
+                    <hr class="section-divider">
+                    <a href="{{ tutorial.video_url }}" target="_blank" class="btn btn-primary">Ver en YouTube</a>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Imagen del Tutorial -->
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
+            {% if tutorial.imagen %}
+                <div class="text-center">
+                    <img src="{{ tutorial.imagen.url }}" alt="Imagen del tutorial" class="img-fluid rounded shadow" style="max-width: 100%; height: auto;">
+                </div>
+            {% endif %}
+        </div>
     </main>
-
-    <!-- Sección para agregar un nuevo tutorial -->
-    <div class="mb-4">
-        {% if user.is_authenticated %}
-        <a href="{% url 'agregar_tutorial' %}" class="btn btn-success">Agregar Tutorial</a>
-        {% else %}
-        <p class="text-danger">Iniciar sesión para compartir tus Tutoriales.</p>
-        {% endif %}
-    </div>
 </div>
 {% endblock %}
 
 {% block extra_css %}
 <style>
+    /* Estilo General */
     main {
-        background-color: #f9f9f9;
-        padding: 30px;
+        background-color: #ffffff;
+        border: 1px solid #e3e3e3;
         border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
-    header {
-        background-color: #343a40;
-    }
-    header h1 {
-        font-size: 2rem;
+
+    /* Títulos de Secciones */
+    .section-title {
+        font-size: 1.6rem;
         font-weight: bold;
+        color: #2c3e50;
+        margin-bottom: 10px;
+        text-transform: uppercase;
     }
-    main h2, main h3 {
-        font-size: 1.5rem;
-        font-weight: bold;
+
+    /* Separador de Secciones */
+    .section-divider {
+        border: none;
+        height: 2px;
+        background-color: #007bff;
+        width: 50%;
+        margin: 10px 0;
     }
+
+    /* Textos */
     .text-dark {
-        color: #333;
+        color: #555;
+        font-size: 1rem;
+    }
+
+    /* Botones */
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        padding: 10px 20px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    /* Imagen */
+    img.shadow {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     }
 </style>
 {% endblock %}

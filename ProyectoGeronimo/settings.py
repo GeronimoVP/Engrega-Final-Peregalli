@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "sslserver",
 ]
 
 MIDDLEWARE = [
@@ -133,7 +134,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'AppGero'
+    'AppGero',
+    "sslserver",
     ]
 
 LOGIN_REDIRECT_URL = 'inicio'  # Cambia 'inicio' al nombre de tu vista de inicio
