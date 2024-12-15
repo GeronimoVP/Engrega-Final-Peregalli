@@ -20,6 +20,7 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('login/', auth_views.LoginView.as_view(template_name='AppGero/login.html'), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
+    path('about/', views.about, name='about'),
     
     # Rutas para Artículos
     path('articulos/', views.lista_articulos, name='lista_articulos'),  # Ruta para listar artículos

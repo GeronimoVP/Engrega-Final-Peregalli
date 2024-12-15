@@ -119,7 +119,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+# Añadir esta línea para indicarle a Django dónde están tus archivos estáticos
+STATICFILES_DIRS = [
+    BASE_DIR / "AppGero" / "static",  # Asegúrate de que la carpeta 'static' esté en la raíz del proyecto
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

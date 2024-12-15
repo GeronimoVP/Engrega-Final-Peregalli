@@ -1,3 +1,4 @@
+from django.templatetags.static import static
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from AppGero.forms import ArticuloForm
@@ -26,6 +27,13 @@ def padre(request):
 
 def login(request):
     return render (request, 'appgero/login.html')
+
+
+def about(request):
+    about_info = {
+        'imagen': static('img/mi_foto.jpg'),  # Genera la ruta de la imagen estática
+    }
+    return render(request, 'appgero/about.html', {'about': about_info})
 
 
 

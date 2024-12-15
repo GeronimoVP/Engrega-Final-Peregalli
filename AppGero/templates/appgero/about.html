@@ -1,0 +1,105 @@
+{% extends 'AppGero/padre.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container px-4 px-lg-5 py-5">
+    <header class="mb-4 bg-dark p-4 rounded">
+        <h1 class="text-center text-white">Sobre Mí</h1>
+    </header>
+
+    <main class="row bg-light p-4 rounded shadow">
+        <!-- Información Personal -->
+        <div class="col-md-6 mb-4">
+            <h2 class="text-primary border-bottom pb-2">Información Personal</h2>
+            <p class="text-muted" style="line-height: 1.8;">
+                ¡Hola! Mi nombre es Gerónimo, tengo 24 años y soy de Uruguay. Me apasiona la tecnología y la ciberseguridad. Cuento con estudios previos en ciberseguridad, lo que me ha permitido explorar las amenazas digitales y las soluciones para protegernos en este mundo conectado. Actualmente, estoy enfocado en desarrollar mis habilidades en programación y crear proyectos enfocados en seguridad informática. Bienvenidos a mi primera web 🚀
+            </p>
+            <p class="text-muted" style="line-height: 1.8;">
+                "El éxito es la suma de pequeños esfuerzos repetidos día tras día."
+                — Robert Collier
+            </p>
+        </div>
+
+        <!-- Foto de Perfil -->
+        <div class="col-md-6 text-center">
+            <h2 class="text-primary border-bottom pb-2 mb-3"></h2>
+            <img src="{% static 'appgero/img/mi_foto.jpg' %}" alt="Foto personal" 
+                 class="img-fluid rounded-circle shadow-lg" style="max-width: 200px; height: auto;">
+        </div>
+    </main>
+
+    <main class="row bg-light p-4 rounded shadow mt-4">
+        <!-- Proyecto y Visión -->
+        <div class="col-md-6 mb-4">
+            <h2 class="text-primary border-bottom pb-2">Proyecto y Visión</h2>
+            <p class="text-muted" style="line-height: 1.8;">
+                Mi objetivo al crear esta web de ciberseguridad fue dar un paso más allá de los tradicionales tutoriales y artículos estáticos, creando un espacio donde los usuarios no solo aprendieran, sino que también pudieran interactuar, compartir y mejorar juntos. 🌐✨
+            </p>
+            <p class="text-muted" style="line-height: 1.8;">
+                La web combina una sección de artículos que ofrece una mirada profunda sobre los últimos retos de la ciberseguridad, abordando desde los conceptos básicos hasta las amenazas más avanzadas que acechan a la sociedad digital actual. 🔍💻
+            </p>
+            <p class="text-muted" style="line-height: 1.8;">
+                Pero no quería que solo fuera una plataforma de lectura, sino un espacio donde las personas pudieran aprender activamente. Por eso, añadí una sección de tutoriales prácticos que van más allá de la teoría, guiando a los usuarios paso a paso en la implementación de prácticas de seguridad. 🛡️📚
+            </p>
+            <p class="text-muted" style="line-height: 1.8;">
+                Sin importar si eres nuevo en el mundo de la ciberseguridad o si ya eres un experto, cada tutorial está diseñado para ser lo suficientemente accesible, pero también desafiante para fomentar el aprendizaje continuo. 🚀
+            </p>
+            <p class="text-muted" style="line-height: 1.8;">
+                Y lo más importante, quise que todo este conocimiento compartido fuera dinámico. No quería que la interacción se limitara a la lectura pasiva, por eso creé un foro interactivo donde la comunidad pueda debatir, preguntar, compartir consejos y soluciones, y aportar su visión sobre el futuro de la seguridad digital. 💬🤝
+            </p>
+            <p class="text-muted" style="line-height: 1.8;">
+                Los comentarios en los artículos son otro lugar clave para crear esa conversación, un espacio donde las ideas se pueden enriquecer con diversas perspectivas y experiencias. 💡🌍
+            </p>
+            <p class="text-muted" style="line-height: 1.8;">
+                Mi visión es clara: ser una fuente confiable, colaborativa y accesible para todos los que buscan mejorar su conocimiento en ciberseguridad. Ya sea que desees proteger tu privacidad personal, mejorar la seguridad en tu empresa o simplemente aprender a manejar mejor tus dispositivos, esta plataforma está pensada para acompañarte en ese viaje. Y lo mejor de todo, está pensada para hacer que el aprendizaje y la colaboración sean parte de la misma experiencia. 🤗🔐
+            </p>
+        </div>
+
+        <!-- Información de Contacto -->
+        <div class="col-md-6">
+            <h2 class="text-primary border-bottom pb-2">Información de Contacto</h2>
+            <p class="text-muted" style="line-height: 1.8;">
+                Si deseas ponerte en contacto conmigo, no dudes en escribirme a mi correo electrónico: 
+                <a href="mailto:jeronimo@example.com" class="btn btn-link">geronimovalles9@gmail.com</a> 📧
+            </p>
+        </div>
+    </main>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Estilo para la cabecera */
+    header h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Estilo para la sección principal */
+    main {
+        background-color: #212529; /* Fondo oscuro */
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    h2 {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #007bff;
+    }
+
+    p {
+        font-size: 1.1rem;
+    }
+
+    /* Estilo de la foto con borde redondeado y sombra */
+    .img-fluid {
+        border: 4px solid #007bff;
+    }
+
+    .text-primary {
+        color: #007bff;
+    }
+</style>
+{% endblock %}
