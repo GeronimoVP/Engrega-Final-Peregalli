@@ -78,3 +78,18 @@ python manage.py runserver
 - Perfiles: Una seccion para personalizar tu perfil, cambiando la foto y editando los detalles personales.
 - Buscar Tutoriales: Utilizar la funcionalidad de búsqueda en /tutoriales/ para encontrar tutoriales específicos.
 - Unirse a la Comunidad: Participar en discusiones sobre ciberseguridad a través de /comunidad/.
+
+## Objetivo y Vision
+-Mi objetivo al crear esta web de ciberseguridad fue dar un paso más allá de los tradicionales tutoriales y artículos estáticos, creando un espacio donde los usuarios no solo aprendieran, sino que también pudieran interactuar, compartir y mejorar juntos. 🌐✨
+
+-La web combina una sección de artículos que ofrece una mirada profunda sobre los últimos retos de la ciberseguridad, abordando desde los conceptos básicos hasta las amenazas más avanzadas que acechan a la sociedad digital actual. 🔍💻
+
+-Pero no quería que solo fuera una plataforma de lectura, sino un espacio donde las personas pudieran aprender activamente. Por eso, añadí una sección de tutoriales prácticos que van más allá de la teoría, guiando a los usuarios paso a paso en la implementación de prácticas de seguridad. 🛡️📚
+
+-Sin importar si eres nuevo en el mundo de la ciberseguridad o si ya eres un experto, cada tutorial está diseñado para ser lo suficientemente accesible, pero también desafiante para fomentar el aprendizaje continuo. 🚀
+
+-Y lo más importante, quise que todo este conocimiento compartido fuera dinámico. No quería que la interacción se limitara a la lectura pasiva, por eso creé un foro interactivo donde la comunidad pueda debatir, preguntar, compartir consejos y soluciones, y aportar su visión sobre el futuro de la seguridad digital. 💬🤝
+
+-Los comentarios en los artículos son otro lugar clave para crear esa conversación, un espacio donde las ideas se pueden enriquecer con diversas perspectivas y experiencias. 💡🌍
+
+-Mi visión es clara: ser una fuente confiable, colaborativa y accesible para todos los que buscan mejorar su conocimiento en ciberseguridad. Ya sea que desees proteger tu privacidad personal, mejorar la seguridad en tu empresa o simplemente aprender a manejar mejor tus dispositivos, esta plataforma está pensada para acompañarte en ese viaje. Y lo mejor de todo, está pensada para hacer que el aprendizaje y la colaboración sean parte de la misma experiencia. 🤗🔐
