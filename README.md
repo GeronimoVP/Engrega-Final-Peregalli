@@ -60,8 +60,21 @@ python manage.py runserver
 
 - Accede a la aplicación en http://127.0.0.1:8000
 
+## USUARIO ADMINISTRADOR KEY:
+- user: superadminuser
+- pass: 101213gero
+
+  ## PERMISOS
+
+  - Se implementaron permisos por grupo de usuarios en /admin. Un perfil nuevo, sin los permisos necesarios (registrarse) no podra acceder a las opciones de editar, o eliminar articulo.
+  - Como prueba de esto aqui hay otro usuario (Moderador) con permisos de edicion:
+ 
+  - user: UsuarioModerador
+  - pass: usuariomoderador
+
 ## Orden para Probar las Funcionalidades
-- Registrar Usuarios: Agregar al menos un usuario en /agregar_usuario/.
-- Agregar Artículos y Tutoriales: Publicar artículos y tutoriales en /agregar_articulo/ y /agregar_tutorial/.
-- Buscar Artículos y Tutoriales: Utilizar la funcionalidad de búsqueda en /buscar_articulo/ para encontrar artículos o tutoriales específicos.
+- Registrar Usuarios: Agregar al usuario en/agregar_usuario/.
+- Agregar Artículos, tutoriales y Foro (F entre usuarios): Publicar artículos, tutoriales y participar en el foro en en /agregar_articulo/, /agregar_tutorial/ y /comunidad/crear/.
+- Perfiles: Una seccion para personalizar tu perfil, cambiando la foto y editando los detalles personales.
+- Buscar Tutoriales: Utilizar la funcionalidad de búsqueda en /tutoriales/ para encontrar tutoriales específicos.
 - Unirse a la Comunidad: Participar en discusiones sobre ciberseguridad a través de /comunidad/.
