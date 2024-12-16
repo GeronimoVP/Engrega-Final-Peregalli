@@ -17,8 +17,7 @@ CyberShield es una aplicación web desarrollada con Django para proporcionar una
 - tzdata==2024.2
 
 ## LINK VIDEO EXPLICATIVO: 
-- https://drive.google.com/file/d/1F5rOZ4QgrtpFmkITXS8nF5bAsr9mgE94/view?usp=sharing
-
+- https://drive.google.com/file/d/1UZREQTgJbRG-DuzGPEZf9undCQyidssX/view?usp=sharing
 ## EXCEL CASOS DE PRUEBA:
 - https://docs.google.com/spreadsheets/d/1D-KuAFr4Ha1cYhJrL9ge09_UyCD046cd/edit?usp=sharing&ouid=109229044969013523747&rtpof=true&sd=true
 
