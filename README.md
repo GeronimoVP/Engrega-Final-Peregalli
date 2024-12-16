@@ -74,7 +74,7 @@ python manage.py runserver
 
 ## Orden para Probar las Funcionalidades
 - Registrar Usuarios: Agregar al usuario en/agregar_usuario/.
-- Agregar Artículos, tutoriales y Foro (F entre usuarios): Publicar artículos, tutoriales y participar en el foro en en /agregar_articulo/, /agregar_tutorial/ y /comunidad/crear/.
+- Agregar Artículos, tutoriales y Foro (Q&A entre usuarios): Publicar artículos, tutoriales y participar en el foro en en /agregar_articulo/, /agregar_tutorial/ y /comunidad/crear/.
 - Perfiles: Una seccion para personalizar tu perfil, cambiando la foto y editando los detalles personales.
 - Buscar Tutoriales: Utilizar la funcionalidad de búsqueda en /tutoriales/ para encontrar tutoriales específicos.
 - Unirse a la Comunidad: Participar en discusiones sobre ciberseguridad a través de /comunidad/.
